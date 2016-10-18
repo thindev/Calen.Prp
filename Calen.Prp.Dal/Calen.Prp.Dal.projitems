@@ -3,12 +3,13 @@
   <PropertyGroup>
     <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
     <HasSharedItems>true</HasSharedItems>
-    <SharedGUID>026e9195-05a9-4306-afdc-10994711f1a5</SharedGUID>
+    <SharedGUID>6a0cbd31-9dbe-4064-8f8d-fcfdac312712</SharedGUID>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
-    <Import_RootNamespace>Calen.Prp.Core</Import_RootNamespace>
+    <Import_RootNamespace>Calen.Prp.Dal</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)TimeManage\" />
+    <Compile Include="$(MSBuildThisFileDirectory)Tables\Goal.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Tables\TimeConsuming.cs" />
   </ItemGroup>
 </Project>

@@ -1,0 +1,26 @@
+﻿<MahApps:MetroWindow 
+    x:Class="Calen.Prp.WPF.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ignore="http://www.galasoft.ch/ignore"
+    mc:Ignorable="d ignore"
+    xmlns:view="clr-namespace:Calen.Prp.WPF.View"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+	xmlns:MahApps="http://metro.mahapps.com/winfx/xaml/controls"
+    BorderThickness="1" 
+    BorderBrush="{DynamicResource AccentColorBrush3}"
+    TitlebarHeight="32"
+    NonActiveWindowTitleBrush="{DynamicResource AccentColorBrush3}"
+    NonActiveBorderBrush="{DynamicResource AccentColorBrush3}"
+    NonActiveGlowBrush="{DynamicResource AccentColorBrush3}"
+    GlowBrush="{DynamicResource AccentColorBrush3}"     
+    Title="{Binding Title}"
+    TitleForeground="WhiteSmoke"
+    DataContext="{Binding Main, Source={StaticResource Locator}}">
+    <Window.Resources>
+
+    </Window.Resources>
+    <view:PagesManageView DataContext="{Binding ResourceCenter}"></view:PagesManageView>
+</MahApps:MetroWindow>
