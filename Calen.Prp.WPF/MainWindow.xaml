@@ -10,6 +10,7 @@
     xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
 	xmlns:MahApps="http://metro.mahapps.com/winfx/xaml/controls"
     BorderThickness="1" 
+    WindowTitleBrush="#FF1979CA"
     BorderBrush="{DynamicResource AccentColorBrush3}"
     TitlebarHeight="32"
     NonActiveWindowTitleBrush="{DynamicResource AccentColorBrush3}"

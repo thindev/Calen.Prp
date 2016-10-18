@@ -9,7 +9,10 @@ namespace Calen.Prp.WPF.ViewModel
 {
     public class PageViewModel:ViewModelBase
     {
+        int _index;
+        object _content;
         string _title;
+        string _iconGeometryPath;
 
         public string Title
         {
@@ -50,7 +53,16 @@ namespace Calen.Prp.WPF.ViewModel
             }
         }
 
-        int _index;
-        object _content;
+        public string IconGeometryPath
+        {
+            get
+            {
+                return _iconGeometryPath;
+            }
+            set
+            {
+                Set(() => IconGeometryPath, ref _iconGeometryPath, value);
+            }
+        }
     }
 }
