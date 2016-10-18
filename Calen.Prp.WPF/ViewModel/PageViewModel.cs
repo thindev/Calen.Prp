@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 
 namespace Calen.Prp.WPF.ViewModel
 {
@@ -12,7 +13,7 @@ namespace Calen.Prp.WPF.ViewModel
         int _index;
         object _content;
         string _title;
-        string _iconGeometryPath;
+        Geometry _iconGeometry;
 
         public string Title
         {
@@ -53,15 +54,15 @@ namespace Calen.Prp.WPF.ViewModel
             }
         }
 
-        public string IconGeometryPath
+        public Geometry IconGeometry
         {
             get
             {
-                return _iconGeometryPath;
+                return _iconGeometry;
             }
             set
             {
-                Set(() => IconGeometryPath, ref _iconGeometryPath, value);
+                Set(() => IconGeometry, ref _iconGeometry, value);
             }
         }
     }

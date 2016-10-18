@@ -9,16 +9,16 @@
     xmlns:view="clr-namespace:Calen.Prp.WPF.View"
     xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
 	xmlns:MahApps="http://metro.mahapps.com/winfx/xaml/controls"
-    BorderThickness="1" 
-    WindowTitleBrush="#FF1979CA"
+    BorderThickness="0.4" 
+    WindowTitleBrush="#ff1979CA"
     BorderBrush="{DynamicResource AccentColorBrush3}"
-    TitlebarHeight="32"
+    TitlebarHeight="34"
     NonActiveWindowTitleBrush="{DynamicResource AccentColorBrush3}"
     NonActiveBorderBrush="{DynamicResource AccentColorBrush3}"
     NonActiveGlowBrush="{DynamicResource AccentColorBrush3}"
     GlowBrush="{DynamicResource AccentColorBrush3}"     
     Title="{Binding Title}"
-    TitleForeground="WhiteSmoke"
+    TitleForeground="{DynamicResource PrimaryLightColorKey}"
     DataContext="{Binding Main, Source={StaticResource Locator}}">
     <Window.Resources>
 

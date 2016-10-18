@@ -6,7 +6,7 @@ namespace Calen.Prp.WPF.ViewModel
     public class MainViewModel : ViewModelBase
     {
 
-        private string _Title = "PRP";
+        private string _Title = "PRP-个人资源管理";
         PagesManagerViewModel _resourceCenter = new PagesManagerViewModel();
 
         public string Title
