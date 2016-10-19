@@ -4,11 +4,12 @@
     <!--程序框架颜色-->
     <SolidColorBrush x:Key="FullColorKey" Color="DarkGray"/>
     <SolidColorBrush x:Key="PrimaryDarkColorKey" Color="#FFDCDCDC"/>
-    <SolidColorBrush x:Key="PrimaryMedianColorKey" Color="#FFE6E6E6"/>
-    <SolidColorBrush x:Key="PrimaryColorKey" Color="#FFF2F2F2"/>
+    <SolidColorBrush x:Key="PrimaryMedianColorKey" Color="#FFEAEAEA"/>
+    <SolidColorBrush x:Key="PrimaryColorKey" Color="#FFF0F0F0"/>
     <SolidColorBrush x:Key="PrimaryLightColorKey" Color="#FFF6F6F6"/>
     <SolidColorBrush x:Key="BlankColorKey" Color="White"/>
     <SolidColorBrush x:Key="NormalForegroundKey" Color="#FF3C3C3C"/>
     <SolidColorBrush x:Key="HighlightForegroundKey" Color="Black"/>
+    <SolidColorBrush x:Key="TitleForegroundKey" Color="#FF646464"/>
     <SolidColorBrush x:Key="DisableColorKey" Color="Gray"/>
 </ResourceDictionary>

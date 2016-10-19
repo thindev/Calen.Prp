@@ -5,4 +5,7 @@
     <DataTemplate x:Key="TimeManagePageTemplateKey">
         <view:TimeManageView/>
     </DataTemplate>
+    <DataTemplate x:Key="HomePageTemplateKey">
+        <Border Background="{DynamicResource PrimaryLightColorKey}"/>
+    </DataTemplate>
 </ResourceDictionary>

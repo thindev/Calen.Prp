@@ -87,7 +87,7 @@
     <Compile Include="Model\DataItem.cs" />
     <Compile Include="Model\DataService.cs" />
     <Compile Include="Model\IDataService.cs" />
-    <Compile Include="Resources\GeometryStrings.cs" />
+    <Compile Include="AppResourcesManager.cs" />
     <Compile Include="ViewModel\KnAndExManageViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\PagesManagerViewModel.cs" />

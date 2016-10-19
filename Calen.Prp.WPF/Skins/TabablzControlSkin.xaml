@@ -382,7 +382,7 @@
         <Setter Property="FocusVisualStyle" Value="{StaticResource MahAppsFocusVisual}"/>
         <Setter Property="Foreground" Value="{DynamicResource NormalForegroundKey}"/>
         <Setter Property="Background" Value="{DynamicResource PrimaryDarkColorKey}"/>
-        <Setter Property="BorderBrush" Value="{DynamicResource AccentColorBrush}"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="MinWidth" Value="140"/>
         <Setter Property="Margin" Value="0,0,0,1"/>
@@ -443,7 +443,7 @@
                         </Trigger>
                         <Trigger Property="IsSelected" Value="True">
                             <Setter Property="Background" Value="{DynamicResource PrimaryLightColorKey}"/>
-                            <Setter Property="Foreground" Value="{DynamicResource HighlightForegroundKey}"/>
+                            <Setter Property="Foreground" Value="{DynamicResource AccentColorBrush}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -455,7 +455,7 @@
         <Setter Property="Background" Value="{DynamicResource PrimaryLightColorKey}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource AccentColorBrush}"/>
         <Setter Property="Foreground" Value="{DynamicResource BlackColorBrush}"/>
-        <Setter Property="Margin" Value="0,-2,0,0"/>
+        <Setter Property="Margin" Value="0,0,0,0"/>
         <Setter Property="BorderThickness" Value="0"/>
         <!--<Setter Property="HeaderSuffixContent">
             <Setter.Value>
@@ -468,8 +468,8 @@
             <Setter.Value>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10,9">
-                        <Path Fill="{Binding ElementName=content,Path=Foreground}" Stretch="Uniform" Height="15" VerticalAlignment="Center" Data="{Binding IconGeometry}"/>
-                        <TextBlock x:Name="content" FontSize="15" Margin="8,0,0,0" Text="{Binding Title}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <Path Fill="{Binding ElementName=content,Path=Foreground}" Stretch="Uniform" Height="16" Width="16" VerticalAlignment="Center" Data="{Binding IconGeometry}"/>
+                        <TextBlock x:Name="content" FontSize="15" Margin="10,0,0,0" Text="{Binding Title}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     </StackPanel>
                 </DataTemplate>
             </Setter.Value>
@@ -478,19 +478,11 @@
             <Setter.Value>
                 <DataTemplate>
                     <mahApps:MetroContentControl>
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="0"/>
-                                <RowDefinition Height="*"/>
-                            </Grid.RowDefinitions>
-                            <Rectangle Fill="{DynamicResource PrimaryColorKey}"/>
-                            <ContentControl Grid.Row="1" Content="{Binding Content}">
-                                <ContentControl.ContentTemplateSelector>
-                                    <view:PageContentTemplateSelector/>
-                                </ContentControl.ContentTemplateSelector>
-                            </ContentControl>
-                        </Grid>
-                        
+                        <ContentControl Content="{Binding Content}">
+                            <ContentControl.ContentTemplateSelector>
+                                <view:PageContentTemplateSelector/>
+                            </ContentControl.ContentTemplateSelector>
+                        </ContentControl>
                     </mahApps:MetroContentControl>
                 </DataTemplate>
             </Setter.Value>

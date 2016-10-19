@@ -19,6 +19,10 @@ namespace Calen.Prp.WPF.View
             {
                 template = Application.Current.FindResource("TimeManagePageTemplateKey")as DataTemplate;
             }
+            else if(item is string)
+            {
+                template = Application.Current.FindResource("HomePageTemplateKey") as DataTemplate; 
+            }
             else
             template= base.SelectTemplate(item, container);
             return template;

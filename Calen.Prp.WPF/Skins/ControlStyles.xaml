@@ -53,10 +53,10 @@
                                 <Setter Property="Background" Value="{DynamicResource PrimaryColorKey}"/>
                             </Trigger>
                             <Trigger Property="IsPressed" Value="true">
-                                <Setter Property="Background" Value="{DynamicResource PrimaryMedianColorKey}"/>
+                                <Setter Property="Background" Value="{DynamicResource PrimaryColorKey}"/>
                             </Trigger>
                             <Trigger Property="IsChecked" Value="true">
-                                <Setter Property="Background" Value="{DynamicResource PrimaryDarkColorKey}"/>
+                                <Setter Property="Background" Value="{DynamicResource PrimaryMedianColorKey}"/>
                                 <Setter Property="Foreground" Value="{DynamicResource AccentColorBrush}"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
