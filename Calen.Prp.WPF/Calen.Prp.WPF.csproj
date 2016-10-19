@@ -92,10 +92,15 @@
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\PagesManagerViewModel.cs" />
     <Compile Include="ViewModel\PageViewModel.cs" />
-    <Compile Include="ViewModel\TimeManageViewModel.cs" />
+    <Compile Include="ViewModel\TimeManage\ActivityViewModel.cs" />
+    <Compile Include="ViewModel\TimeManage\TimeManageViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="View\PageContentTemplateSelector.cs" />
     <Compile Include="View\PagesManageView.xaml.cs">
       <DependentUpon>PagesManageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TimeManageLeftSidePanel.xaml.cs">
+      <DependentUpon>TimeManageLeftSidePanel.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\TimeManageView.xaml.cs">
       <DependentUpon>TimeManageView.xaml</DependentUpon>
@@ -112,6 +117,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Resources\MainResources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resources\PathGeometries.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -120,19 +129,31 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Skins\ControlStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Skins\MainSkin.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Skins\PageContentTemplates.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Skins\TabablzControlSkin.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Skins\海蓝.xaml">
+    <Page Include="Skins\Blue.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\PagesManageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TimeManageLeftSidePanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

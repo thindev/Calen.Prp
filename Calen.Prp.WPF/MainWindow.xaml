@@ -10,16 +10,18 @@
     xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
 	xmlns:MahApps="http://metro.mahapps.com/winfx/xaml/controls"
     BorderThickness="0.4" 
-    WindowTitleBrush="#ff1979CA"
     BorderBrush="{DynamicResource AccentColorBrush3}"
-    TitlebarHeight="34"
-    NonActiveWindowTitleBrush="{DynamicResource AccentColorBrush3}"
-    NonActiveBorderBrush="{DynamicResource AccentColorBrush3}"
-    NonActiveGlowBrush="{DynamicResource AccentColorBrush3}"
-    GlowBrush="{DynamicResource AccentColorBrush3}"     
+    TitlebarHeight="32"
+    NonActiveWindowTitleBrush="{DynamicResource AccentColorBrush2}"
+    NonActiveBorderBrush="{DynamicResource AccentColorBrush2}"
+    NonActiveGlowBrush="{DynamicResource AccentColorBrush2}"
+    GlowBrush="{DynamicResource AccentColorBrush}"     
     Title="{Binding Title}"
     TitleForeground="{DynamicResource PrimaryLightColorKey}"
-    DataContext="{Binding Main, Source={StaticResource Locator}}">
+    DataContext="{Binding Main, Source={StaticResource Locator}}"
+    WindowStartupLocation="CenterScreen"
+    Height="660"
+    Width="1000">
     <Window.Resources>
 
     </Window.Resources>

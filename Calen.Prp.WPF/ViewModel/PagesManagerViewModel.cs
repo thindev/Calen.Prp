@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Calen.Prp.WPF.ViewModel.TimeManage;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -30,6 +31,7 @@ namespace Calen.Prp.WPF.ViewModel
             PageViewModel timeManagePage = new PageViewModel();
             timeManagePage.Index = 1;
             timeManagePage.Title = "时间管理";
+            timeManagePage.Content = new TimeManageViewModel();
             timeManagePage.IconGeometry = PathGeometry.Parse(Resources.GeometryStrings.TimeManagePageIconData);
             PageList.Add(timeManagePage);
             PageViewModel knowledgeAndExperiencePage = new PageViewModel();

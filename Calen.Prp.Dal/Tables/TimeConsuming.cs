@@ -17,6 +17,6 @@ namespace Calen.Prp.Dal.Tables
         /// 计划花费时间（秒）
         /// </summary>
         public double PlanedTimeCost { get; set; }
-        public double 
+       
     }
 }

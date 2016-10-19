@@ -8,10 +8,13 @@
         <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
         <!-- Accent and AppTheme setting -->
-        <ResourceDictionary Source="pack://application:,,,/Calen.Prp.WPF;component/Skins/海蓝.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Calen.Prp.WPF;component/Skins/Blue.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
         <!--自定义控件外观-->
         <ResourceDictionary Source="pack://application:,,,/Calen.Prp.WPF;component/Skins/TabablzControlSkin.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Calen.Prp.WPF;component/Skins/ControlStyles.xaml" />
+        <!--控件内容模版-->
+        <ResourceDictionary Source="pack://application:,,,/Calen.Prp.WPF;component/Skins/PageContentTemplates.xaml"/>
     </ResourceDictionary.MergedDictionaries>
    
 </ResourceDictionary>

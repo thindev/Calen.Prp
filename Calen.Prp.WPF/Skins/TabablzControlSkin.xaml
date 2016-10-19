@@ -4,6 +4,7 @@
                     xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz"
                     xmlns:dockablz="clr-namespace:Dragablz.Dockablz;assembly=Dragablz"
                     xmlns:mahApps="http://metro.mahapps.com/winfx/xaml/controls"
+                    xmlns:view="clr-namespace:Calen.Prp.WPF.View"
                     xmlns:converters="clr-namespace:Dragablz.Converters;assembly=Dragablz">
 
     <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
@@ -379,7 +380,7 @@
 
     <Style x:Key="MahAppsTrapezoidDragableTabItemStyle"  TargetType="{x:Type dragablz:DragablzItem}">
         <Setter Property="FocusVisualStyle" Value="{StaticResource MahAppsFocusVisual}"/>
-        <Setter Property="Foreground" Value="{DynamicResource TextNormalColorKey}"/>
+        <Setter Property="Foreground" Value="{DynamicResource NormalForegroundKey}"/>
         <Setter Property="Background" Value="{DynamicResource PrimaryDarkColorKey}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource AccentColorBrush}"/>
         <Setter Property="BorderThickness" Value="0"/>
@@ -442,7 +443,7 @@
                         </Trigger>
                         <Trigger Property="IsSelected" Value="True">
                             <Setter Property="Background" Value="{DynamicResource PrimaryLightColorKey}"/>
-                            <Setter Property="Foreground" Value="{DynamicResource TextHightLightColorKey}"/>
+                            <Setter Property="Foreground" Value="{DynamicResource HighlightForegroundKey}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -483,10 +484,13 @@
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
                             <Rectangle Fill="{DynamicResource PrimaryColorKey}"/>
-                            <local:TimeManageView Grid.Row="1"/>
+                            <ContentControl Grid.Row="1" Content="{Binding Content}">
+                                <ContentControl.ContentTemplateSelector>
+                                    <view:PageContentTemplateSelector/>
+                                </ContentControl.ContentTemplateSelector>
+                            </ContentControl>
                         </Grid>
                         
-                        <!--<ContentPresenter Content="" ></ContentPresenter>-->
                     </mahApps:MetroContentControl>
                 </DataTemplate>
             </Setter.Value>

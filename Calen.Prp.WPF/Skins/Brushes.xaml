@@ -8,7 +8,7 @@
     <SolidColorBrush x:Key="PrimaryColorKey" Color="#FFF2F2F2"/>
     <SolidColorBrush x:Key="PrimaryLightColorKey" Color="#FFF6F6F6"/>
     <SolidColorBrush x:Key="BlankColorKey" Color="White"/>
-    <SolidColorBrush x:Key="TextNormalColorKey" Color="#FF525252"/>
-    <SolidColorBrush x:Key="TextHightLightColorKey" Color="Black"/>
+    <SolidColorBrush x:Key="NormalForegroundKey" Color="#FF3C3C3C"/>
+    <SolidColorBrush x:Key="HighlightForegroundKey" Color="Black"/>
     <SolidColorBrush x:Key="DisableColorKey" Color="Gray"/>
 </ResourceDictionary>
