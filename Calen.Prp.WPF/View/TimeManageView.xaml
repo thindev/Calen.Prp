@@ -4,6 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Calen.Prp.WPF.View"
+             xmlns:mahapps="http://metro.mahapps.com/winfx/xaml/controls"
+             d:DesignWidth="800"
              mc:Ignorable="d" 
              >
     <Grid >
@@ -21,9 +23,11 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Border Background="{DynamicResource PrimaryLightColorKey}">
-                <TextBlock Text="目标列表" FontSize="14" Foreground="{DynamicResource TitleForegroundKey}" VerticalAlignment="Center" Margin="12,0,0,0"/>
+                <TextBlock Text="{Binding CurrentTitle}" FontSize="14" Foreground="{DynamicResource TitleForegroundKey}" VerticalAlignment="Center" Margin="12,0,0,0"/>
             </Border>
-            <Border Grid.Row="1" Background="White"></Border>
+            <Border Grid.Row="1" Background="White">
+                <mahapps:TransitioningContentControl Content=""/>
+            </Border>
         </Grid>
     </Grid>
 </UserControl>

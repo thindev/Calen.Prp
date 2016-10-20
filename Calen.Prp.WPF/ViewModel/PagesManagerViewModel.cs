@@ -31,7 +31,11 @@ namespace Calen.Prp.WPF.ViewModel
             PageViewModel timeManagePage = new PageViewModel();
             timeManagePage.Index = 1;
             timeManagePage.Title = "时间管理";
-            timeManagePage.Content = new TimeManageViewModel();
+            TimeManageViewModel tm= new TimeManageViewModel() { IsToDoListMenuSelected = true };
+            timeManagePage.Content = tm;
+            tm.Activities.Add(new ActivityViewModel() { Name = "学习" });
+            tm.Activities.Add(new ActivityViewModel() { Name = "工作" });
+            tm.Activities.Add(new ActivityViewModel() { Name = "生活" });
             timeManagePage.IconGeometry = AppResourcesManager.GetResource<Geometry>("TimeManagePageIconData");
             PageList.Add(timeManagePage);
             

@@ -37,12 +37,19 @@ namespace Calen.Prp.WPF.View
 
         void ExpandMenuPanel()
         {
+            if (this.tagsToggleButton != null)
+                this.tagsToggleButton.Visibility = Visibility.Collapsed;
             this.rightColumn.Width = new GridLength(160);
             if(this.activitiesContainer!=null)
             this.activitiesContainer.Visibility = Visibility.Visible;
         }
         void CollapseMenuPanel()
         {
+            if(tagsToggleButton!=null)
+            {
+                this.tagsToggleButton.Visibility = Visibility.Visible;
+            }
+           
             this.rightColumn.Width = new GridLength(0);
             if(this.activitiesContainer!=null)
             this.activitiesContainer.Visibility = Visibility.Collapsed;

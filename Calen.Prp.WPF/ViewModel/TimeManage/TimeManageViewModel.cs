@@ -14,6 +14,7 @@ namespace Calen.Prp.WPF.ViewModel.TimeManage
         bool _isCalendarMenuSelected;
         bool _isTimeTableMenuSelected;
         bool _isToDoListMenuSelected;
+        bool _isDiaryMenuSelected;
         string _currentTitle;
         ObservableCollection<ActivityViewModel> _activities = new ObservableCollection<ActivityViewModel>();
         ActivityViewModel _currentActivity;
@@ -29,7 +30,7 @@ namespace Calen.Prp.WPF.ViewModel.TimeManage
             {
                 if(value)
                 {
-                    this.CurrentTitle = "目标列表";
+                    this.CurrentTitle = "目标";
                 }
                 Set(() => IsTargetMenuSelected, ref _isTargetMenuSelected, value);
             }
@@ -46,7 +47,7 @@ namespace Calen.Prp.WPF.ViewModel.TimeManage
             {
                if(value)
                 {
-                    this.CurrentTitle = "日历";
+                    this.CurrentTitle = "我的日历";
                 }
                 Set(() => IsCalendarMenuSelected, ref _isCalendarMenuSelected, value);
             }
@@ -80,7 +81,7 @@ namespace Calen.Prp.WPF.ViewModel.TimeManage
             {
                 if(value)
                 {
-                    this.CurrentTitle = "待办事项";
+                    this.CurrentTitle = "事项列表";
                 }
                 Set(() => IsToDoListMenuSelected, ref _isToDoListMenuSelected, value);
             }
@@ -116,7 +117,32 @@ namespace Calen.Prp.WPF.ViewModel.TimeManage
 
             set
             {
-                Set(()=> CurrentActivity, ref _currentActivity, value);
+                if(_currentActivity!=value)
+                {
+                    if (value != null)
+                    {
+                        this.CurrentTitle = "["+value.Name+"]的待办事项";
+                    }
+                    _currentActivity = value;
+                    RaisePropertyChanged(()=>CurrentActivity);
+                }
+            }
+        }
+
+        public bool IsDiaryMenuSelected
+        {
+            get
+            {
+                return _isDiaryMenuSelected;
+            }
+
+            set
+            {
+                if(value)
+                {
+                    this.CurrentTitle = "日记";
+                }
+                Set(() => IsDiaryMenuSelected,ref _isDiaryMenuSelected,value);
             }
         }
     }

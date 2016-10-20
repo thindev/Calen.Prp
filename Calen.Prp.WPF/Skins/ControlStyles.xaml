@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     >
-    <Style x:Key="MenuListToggleButtonStyle" TargetType="ToggleButton">
+    <Style x:Key="GeometryContentToggleButtonStyle" TargetType="ToggleButton">
         <Style.Setters>
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Foreground" Value="{DynamicResource NormalForegroundKey}"/>
@@ -14,10 +14,7 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="ToggleButton">
                         <Border Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" Padding="{TemplateBinding Padding}">
-                            <Path Fill="{TemplateBinding Foreground}" Stretch="Uniform"  VerticalAlignment="Center" HorizontalAlignment="Left">
-                                <Path.Data>
-                                    M409.6 230.4h-307.2c-14.131 0-25.6 11.469-25.6 25.6s11.469 25.6 25.6 25.6h307.2c14.157 0 25.6-11.469 25.6-25.6s-11.443-25.6-25.6-25.6zM102.4 179.2h307.2c14.157 0 25.6-11.469 25.6-25.6s-11.443-25.6-25.6-25.6h-307.2c-14.131 0-25.6 11.469-25.6 25.6s11.469 25.6 25.6 25.6zM409.6 332.8h-307.2c-14.131 0-25.6 11.443-25.6 25.6s11.469 25.6 25.6 25.6h307.2c14.157 0 25.6-11.443 25.6-25.6s-11.443-25.6-25.6-25.6z
-                                </Path.Data>
+                            <Path Fill="{TemplateBinding Foreground}" Stretch="Uniform"  VerticalAlignment="Center" HorizontalAlignment="Left" Data="{TemplateBinding Content}">
                             </Path>
                         </Border>
                         <ControlTemplate.Triggers>

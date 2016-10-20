@@ -7,8 +7,8 @@
              xmlns:dragablz="http://dragablz.net/winfx/xaml/dragablz"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid Background="{DynamicResource PrimaryDarkColorKey}">
-        <dragablz:TabablzControl ItemsSource="{Binding PageList}" >
+    <Grid Background="{DynamicResource PrimaryLightColorKey}">
+        <dragablz:TabablzControl ItemsSource="{Binding PageList}">
         </dragablz:TabablzControl>
     </Grid>
 </UserControl>
