@@ -95,15 +95,31 @@
     <Compile Include="ViewModel\TimeManage\ActivityViewModel.cs" />
     <Compile Include="ViewModel\TimeManage\TimeManageViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="View\TimeManage\DiaryManageView.xaml.cs">
+      <DependentUpon>DiaryManageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\HidableContentControl.cs" />
+    <Compile Include="View\TimeManage\MyCalendarView.xaml.cs">
+      <DependentUpon>MyCalendarView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\PageContentTemplateSelector.cs" />
     <Compile Include="View\PagesManageView.xaml.cs">
       <DependentUpon>PagesManageView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\TimeManageLeftSidePanel.xaml.cs">
+    <Compile Include="View\TimeManage\TargetsManageView.xaml.cs">
+      <DependentUpon>TargetsManageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TimeManage\TimeManageContentPanel.xaml.cs">
+      <DependentUpon>TimeManageContentPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TimeManage\TimeManageLeftSidePanel.xaml.cs">
       <DependentUpon>TimeManageLeftSidePanel.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\TimeManageView.xaml.cs">
+    <Compile Include="View\TimeManage\TimeManageView.xaml.cs">
       <DependentUpon>TimeManageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TimeManage\ToDoListView.xaml.cs">
+      <DependentUpon>ToDoListView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -149,15 +165,35 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="View\TimeManage\DiaryManageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TimeManage\MyCalendarView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\PagesManageView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\TimeManageLeftSidePanel.xaml">
+    <Page Include="View\TimeManage\TargetsManageView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\TimeManageView.xaml">
+    <Page Include="View\TimeManage\TimeManageContentPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TimeManage\TimeManageLeftSidePanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TimeManage\TimeManageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TimeManage\ToDoListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

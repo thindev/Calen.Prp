@@ -384,7 +384,7 @@
         <Setter Property="Background" Value="{DynamicResource PrimaryLightColorKey}"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
         <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="MinWidth" Value="140"/>
+        <Setter Property="MinWidth" Value="0"/>
         <Setter Property="Margin" Value="0,0,0,1"/>
         <!--<Setter Property="Height" Value="32"/>-->
         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
@@ -405,7 +405,7 @@
                                 <ContentPresenter Content="{TemplateBinding ContentControl.Content}" ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}" ContentStringFormat="{TemplateBinding ContentControl.ContentStringFormat}" HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}" SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}"
                                                   x:Name="contentPresenter"                                          
                                                   IsHitTestVisible="False" />
-                                <Rectangle Name="bottomLine" Margin="6,-1,6,0" Height="1.6" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" StrokeThickness="0" Fill="Transparent"/>
+                                <Rectangle Name="bottomLine" Margin="2,0,2,-1" Height="2" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" StrokeThickness="0" Fill="Transparent"/>
                                 <Thumb Grid.Column="0" HorizontalAlignment="Stretch" VerticalContentAlignment="Stretch" 
                                        x:Name="PART_Thumb"
                                        Style="{StaticResource MahAppsInvisibleThumbStyle}" />
@@ -445,7 +445,7 @@
                         <Trigger Property="IsSelected" Value="True">
                             <!--<Setter Property="Background" Value="{DynamicResource PrimaryLightColorKey}"/>-->
                             <Setter Property="Foreground" Value="{DynamicResource AccentColorBrush}"/>
-                            <Setter TargetName="bottomLine" Property="Fill" Value="{DynamicResource AccentColorBrush2}"/>
+                            <Setter TargetName="bottomLine" Property="Fill" Value="{DynamicResource AccentColorBrush}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -469,7 +469,7 @@
         <Setter Property="CustomHeaderItemTemplate">
             <Setter.Value>
                 <DataTemplate>
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center"  Margin="10,12,10,14">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center"  Margin="18,12">
                         <Path Fill="{Binding ElementName=content,Path=Foreground}" Stretch="Uniform" Height="16" Width="16" VerticalAlignment="Center" Data="{Binding IconGeometry}"/>
                         <TextBlock x:Name="content" FontSize="15" Margin="10,0,0,0" Text="{Binding Title}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     </StackPanel>
