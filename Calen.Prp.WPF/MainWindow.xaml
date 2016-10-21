@@ -9,7 +9,7 @@
     xmlns:view="clr-namespace:Calen.Prp.WPF.View"
     xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
 	xmlns:MahApps="http://metro.mahapps.com/winfx/xaml/controls"
-    BorderThickness="0.4" 
+    BorderThickness="1" 
     TitlebarHeight="32"
     NonActiveWindowTitleBrush="{DynamicResource AccentColorBrush}"
     NonActiveBorderBrush="DarkGray"

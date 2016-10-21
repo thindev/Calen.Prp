@@ -9,6 +9,9 @@
     <Import_RootNamespace>Calen.Prp.Core</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)TimeManage\" />
+    <Compile Include="$(MSBuildThisFileDirectory)CommentEdit.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CommentEditList.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TimeManage\GoalEdit.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TimeManage\GoalEditList.cs" />
   </ItemGroup>
 </Project>

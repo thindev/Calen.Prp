@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <local:HidableContentControl IsSelected="{Binding IsTargetMenuSelected}">
+        <local:HidableContentControl IsSelected="{Binding IsGoalMenuSelected}">
             <local:TargetsManageView/>
         </local:HidableContentControl>
         <local:HidableContentControl IsSelected="{Binding IsCalendarMenuSelected}">

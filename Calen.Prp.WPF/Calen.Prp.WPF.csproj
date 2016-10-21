@@ -9,11 +9,12 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Calen.Prp.WPF</RootNamespace>
     <AssemblyName>Calen.Prp.WPF</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -36,6 +37,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Csla, Version=4.6.500.0, Culture=neutral, PublicKeyToken=93be5fdc093e4c30, processorArchitecture=MSIL">
+      <HintPath>..\packages\CSLA-Core.4.6.500\lib\net45\Csla.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Dragablz, Version=0.0.3.171, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dragablz.0.0.3.171\lib\net45\Dragablz.dll</HintPath>
       <Private>True</Private>
@@ -88,12 +93,16 @@
     <Compile Include="Model\DataService.cs" />
     <Compile Include="Model\IDataService.cs" />
     <Compile Include="AppResourcesManager.cs" />
+    <Compile Include="ViewModel\Class1.cs" />
     <Compile Include="ViewModel\KnAndExManageViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\PagesManagerViewModel.cs" />
     <Compile Include="ViewModel\PageViewModel.cs" />
     <Compile Include="ViewModel\TimeManage\ActivityViewModel.cs" />
+    <Compile Include="ViewModel\TimeManage\GoalManageViewModel.cs" />
+    <Compile Include="ViewModel\TimeManage\GoalViewModel.cs" />
     <Compile Include="ViewModel\TimeManage\TimeManageViewModel.cs" />
+    <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="View\TimeManage\DiaryManageView.xaml.cs">
       <DependentUpon>DiaryManageView.xaml</DependentUpon>
@@ -106,8 +115,8 @@
     <Compile Include="View\PagesManageView.xaml.cs">
       <DependentUpon>PagesManageView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\TimeManage\TargetsManageView.xaml.cs">
-      <DependentUpon>TargetsManageView.xaml</DependentUpon>
+    <Compile Include="View\TimeManage\GoalsManageView.xaml.cs">
+      <DependentUpon>GoalsManageView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\TimeManage\TimeManageContentPanel.xaml.cs">
       <DependentUpon>TimeManageContentPanel.xaml</DependentUpon>
@@ -177,7 +186,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\TimeManage\TargetsManageView.xaml">
+    <Page Include="View\TimeManage\GoalsManageView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -226,7 +235,15 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Calen.Prp.Core.Windows\Calen.Prp.Core.Windows.csproj">
+      <Project>{378e6970-a86e-4e29-a833-2aa2acc28af1}</Project>
+      <Name>Calen.Prp.Core.Windows</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\CSLA-Core.4.6.500\analyzers\c#\Csla.Analyzers.dll" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -10,7 +10,7 @@ namespace Calen.Prp.WPF.ViewModel.TimeManage
 {
     public class TimeManageViewModel:ViewModelBase
     {
-        bool _isTargetMenuSelected;
+        bool _isGoalMenuSelected;
         bool _isCalendarMenuSelected;
         bool _isTimeTableMenuSelected;
         bool _isToDoListMenuSelected;
@@ -19,11 +19,11 @@ namespace Calen.Prp.WPF.ViewModel.TimeManage
         ObservableCollection<ActivityViewModel> _activities = new ObservableCollection<ActivityViewModel>();
         ActivityViewModel _currentActivity;
 
-        public bool IsTargetMenuSelected
+        public bool IsGoalMenuSelected
         {
             get
             {
-                return _isTargetMenuSelected;
+                return _isGoalMenuSelected;
             }
 
             set
@@ -32,7 +32,7 @@ namespace Calen.Prp.WPF.ViewModel.TimeManage
                 {
                     this.CurrentTitle = "目标";
                 }
-                Set(() => IsTargetMenuSelected, ref _isTargetMenuSelected, value);
+                Set(() => IsGoalMenuSelected, ref _isGoalMenuSelected, value);
             }
         }
 
