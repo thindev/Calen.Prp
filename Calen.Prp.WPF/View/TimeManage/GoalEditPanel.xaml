@@ -10,39 +10,58 @@
               BorderBrush="{DynamicResource PrimaryDarkColorKey}"
              Background="{DynamicResource BlankColorKey}"
              >
-    <Grid Margin="12">
+    <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="42"/>
             <RowDefinition/>
-            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Vertical" TextElement.FontSize="{DynamicResource FontSize_Normal}" TextElement.Foreground="{DynamicResource TitleForegroundKey}" DataContext="{Binding CurrentEditingItem}">
-            <StackPanel Margin="0,0,0,8">
-                <TextBox Style="{DynamicResource TextBoxStyle_Common}" 
-                        Text="{Binding Model.Content}"
+        <Grid Background="{DynamicResource PrimaryLightColorKey}">
+            <TextBlock Text="目标详情" Margin="12,0" VerticalAlignment="Center" FontSize="{DynamicResource FontSize_Normal}" Foreground="{DynamicResource TitleForegroundKey}" Background="{DynamicResource PrimaryLightColorKey}"/>
+            <TextBlock Text="新增目标" Margin="12,0" VerticalAlignment="Center" FontSize="{DynamicResource FontSize_Normal}" Foreground="{DynamicResource TitleForegroundKey}" Visibility="{Binding CurrentEditingItem.Model.IsNew,Converter={StaticResource BooleanToVisibilityConverter} }" Background="{DynamicResource PrimaryLightColorKey}"/>
+            <StackPanel Margin="8,0" Orientation="Horizontal" HorizontalAlignment="Right" Visibility="{Binding CurrentEditingItem.Model.IsDirty,Converter={StaticResource BooleanToVisibilityConverter},NotifyOnSourceUpdated=True}">
+                <!--<Button Style="{StaticResource ButtonStyle_FlatSquare}"  BorderThickness="0" Padding="12,4" Margin="8,0" Command="{Binding CanelEditCommand}">取消</Button>-->
+                <Button Style="{StaticResource ButtonStyle_AccentedSquare}"   BorderThickness="0" Padding="12,4" Margin="8,0" Command="{Binding SubmitEditCommand}">保存</Button>
+
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="1"  Margin="12">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            
+            <StackPanel Orientation="Vertical" TextElement.FontSize="{DynamicResource FontSize_Normal}" TextElement.Foreground="{DynamicResource TitleForegroundKey}" DataContext="{Binding CurrentEditingItem}">
+                <StackPanel Margin="0,0,0,8">
+                    <TextBox Style="{DynamicResource TextBoxStyle_Common}" 
+                        Text="{Binding Model.Content,UpdateSourceTrigger=PropertyChanged}"
                          BorderBrush="{DynamicResource PrimaryMedianColorKey}" VerticalContentAlignment="Top"  Foreground="{DynamicResource NormalForegroundKey}" mahapps:TextBoxHelper.Watermark="描述您的目标..."  BorderThickness="1,1,1,1"
-                      mahapps:TextBoxHelper.ClearTextButton="True" Height="52"  ></TextBox>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="0,8">
-                <TextBlock Text="开始日期：" VerticalAlignment="Center"/>
-                <DatePicker Width="204" FontSize="{DynamicResource FontSize_Normal}" SelectedDate="{Binding Model.StartTime}"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="0,8">
-                <TextBlock Text="截止日期：" VerticalAlignment="Center"/>
-                <DatePicker Width="204" FontSize="{DynamicResource FontSize_Normal}" SelectedDate="{Binding Model.EndTime}"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="0,8">
-                <TextBlock Text="等级：" VerticalAlignment="Center"/>
+                      mahapps:TextBoxHelper.ClearTextButton="{Binding Model.IsNew}" Height="64"  TextWrapping="NoWrap" ></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,8">
+                    <TextBlock Text="开始日期：" VerticalAlignment="Center"/>
+                    <DatePicker Width="204" FontSize="{DynamicResource FontSize_Normal}" SelectedDate="{Binding Model.StartTime}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,8">
+                    <TextBlock Text="截止日期：" VerticalAlignment="Center"/>
+                    <DatePicker Width="204" FontSize="{DynamicResource FontSize_Normal}" SelectedDate="{Binding Model.EndTime}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,8">
+                    <TextBlock Text="等级：" VerticalAlignment="Center"/>
 
+                </StackPanel>
+                <StackPanel Margin="0,8">
+                    <TextBlock Text="备注：" VerticalAlignment="Center"/>
+                    <TextBox Style="{DynamicResource TextBoxStyle_Common}" Margin="0,8" TextWrapping="Wrap" AcceptsReturn="True" VerticalAlignment="Center" Height="84" FontSize="{DynamicResource FontSize_Normal}" Foreground="{DynamicResource NormalForegroundKey}" Text="{Binding Model.Description,UpdateSourceTrigger=PropertyChanged}"/>
+                </StackPanel>
             </StackPanel>
-            <StackPanel Margin="0,8">
-                <TextBlock Text="备注：" VerticalAlignment="Center"/>
-                <TextBox Style="{DynamicResource TextBoxStyle_Common}" Margin="0,8" TextWrapping="Wrap" AcceptsReturn="True" VerticalAlignment="Center" Height="84" FontSize="{DynamicResource FontSize_Normal}" Foreground="{DynamicResource NormalForegroundKey}" Text="{Binding Model.Description,UpdateSourceTrigger=PropertyChanged}"/>
-            </StackPanel>
-        </StackPanel>
-        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Visibility="{Binding CurrentEditingItem.Model.IsDirty,Converter={StaticResource BooleanToVisibilityConverter},NotifyOnSourceUpdated=True}">
-            <!--<Button Style="{StaticResource ButtonStyle_FlatSquare}"  BorderThickness="0" Padding="12,4" Margin="8,0" Command="{Binding CanelEditCommand}">取消</Button>-->
-            <Button Style="{StaticResource ButtonStyle_AccentedSquare}"   BorderThickness="0" Padding="12,4" Margin="8,0" Command="{Binding SubmitEditCommand}">保存</Button>
-
-        </StackPanel>
+            <ToggleButton Grid.Row="1" Style="{DynamicResource ToggleButtonStyle_GeometryContent}"  IsChecked="{Binding IsGoalDetialPanelShowed}" Padding="4" Height="28" Foreground="{DynamicResource TitleForegroundKey}">
+                <ToggleButton.Content>
+                    <PathGeometry>
+                        M 16 3 C 8.8321429 3 3 8.8321429 3 16 C 3 23.167857 8.8321429 29 16 29 C 23.167857 29 29 23.167857 29 16 C 29 8.8321429 23.167857 3 16 3 z M 16 5 C 22.086977 5 27 9.9130231 27 16 C 27 22.086977 22.086977 27 16 27 C 9.9130231 27 5 22.086977 5 16 C 5 9.9130231 9.9130231 5 16 5 z M 16.71875 9.59375 L 15.28125 11 L 19.28125 15 L 9 15 L 9 17 L 19.28125 17 L 15.28125 21 L 16.71875 22.40625 L 22.40625 16.71875 L 23.125 16 L 22.40625 15.28125 L 16.71875 9.59375 z
+                    </PathGeometry>
+                </ToggleButton.Content>
+            </ToggleButton>
+        </Grid>
     </Grid>
+   
 </UserControl>

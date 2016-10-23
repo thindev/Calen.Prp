@@ -8,47 +8,16 @@ using System.Text;
 using System.Threading.Tasks;
 using Csla;
 using System.Windows.Input;
-using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.CommandWpf;
 using System.Windows;
 
 namespace Calen.Prp.WPF.ViewModel.TimeManage
 {
-    public class GoalManageViewModel : ViewModelBase<GoalEditList>
+    public class GoalManageViewModel : ViewModelBase<GoalEditManager>
     {
-        public GoalManageViewModel(GoalEditList model) : base(model)
+        public GoalManageViewModel(GoalEditManager model) : base(model)
         {
-            model.CollectionChanged += Model_CollectionChanged;
-            BufferGoalItem = new GoalViewModel(GoalEditList.NewGoalChild());
-        }
-
-        private void Model_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-        {
-            Application.Current?.Dispatcher.BeginInvoke(new Action(delegate()
-            {
-                List<string> goalIds = _goalList.Select(g => g.Model.Id).ToList();
-                if (e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Add)
-                {
-                    foreach (GoalEdit g in e.NewItems)
-                    {
-                        if (!goalIds.Contains(g.Id))
-                        {
-                            _goalList.Add(new GoalViewModel(g));
-                        }
-                    }
-                }
-                else if (e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Remove)
-                {
-                    foreach (GoalEdit g in e.OldItems)
-                    {
-                        if (goalIds.Contains(g.Id))
-                        {
-                            GoalViewModel item = _goalList.First(x => x.Model.Id == g.Id);
-                            _goalList.Remove(item);
-                        }
-                    }
-                }
-            }));
-            
+            BufferGoalItem = new GoalViewModel(GoalEdit.NewGoalEdit());
         }
 
         ObservableCollection<GoalViewModel> _goalList = new ObservableCollection<GoalViewModel>();
@@ -71,21 +40,34 @@ namespace Calen.Prp.WPF.ViewModel.TimeManage
             {
                 if(_addGoalCommand==null)
                 {
-                    _addGoalCommand = new RelayCommand(AddGoalAtion);
+                    _addGoalCommand = new  RelayCommand(AddGoalAtion,AddGoalPredicate);
                 }
                 return _addGoalCommand;
             }
         }
+
+        private bool AddGoalPredicate()
+        {
+            bool value= (this.BufferGoalItem!=null&&!string.IsNullOrEmpty(this.BufferGoalItem.Model.Content));
+            return value;
+        }
+
         public ICommand SubmitEditCommand
         {
             get
             {
                 if(_submitEditCommand==null)
                 {
-                    _submitEditCommand = new RelayCommand(SubmitEditAction);
+                    _submitEditCommand = new RelayCommand(SubmitEditAction,SubmitPredicate);
                 }
                 return _submitEditCommand;
             }
+        }
+
+        private bool SubmitPredicate()
+        {
+            bool value = (this.CurrentEditingItem != null && !string.IsNullOrEmpty(this.CurrentEditingItem.Model.Content));
+            return value;
         }
 
         private void SubmitEditAction()
@@ -142,13 +124,14 @@ namespace Calen.Prp.WPF.ViewModel.TimeManage
             }
         }
 
+        bool _isGoalDetialPanelShowed;
         public bool IsGoalDetialPanelShowed
         {
             get
             {
-                return _isEditModel||_isViewDetailMode;
+                return _isGoalDetialPanelShowed;
             }
-
+            set { Set(() => IsGoalDetialPanelShowed, ref _isGoalDetialPanelShowed, value); }
         }
 
         private bool CreateGoalPredicate()
@@ -173,8 +156,9 @@ namespace Calen.Prp.WPF.ViewModel.TimeManage
                 {
                     _isEditModel = value;
                     RaisePropertyChanged(()=>IsEditModel);
-                    RaisePropertyChanged(() => IsGoalDetialPanelShowed);
                 }
+                if (value)
+                    IsGoalDetialPanelShowed = value;
             }
         }
         bool _isViewDetailMode;
@@ -187,8 +171,10 @@ namespace Calen.Prp.WPF.ViewModel.TimeManage
                 {
                     _isViewDetailMode = value;
                     RaisePropertyChanged(() => IsViewDetailMode);
-                    RaisePropertyChanged(() => IsGoalDetialPanelShowed);
+                   
                 }
+                if (value)
+                    IsGoalDetialPanelShowed = value;
             }
         }
 
@@ -216,31 +202,55 @@ namespace Calen.Prp.WPF.ViewModel.TimeManage
                 }
             }
         }
-
         GoalViewModel _currentEditingItem;
 
+        /// <summary>
+        /// 异步新增一条记录
+        /// </summary>
+        /// <param name="keepEditingMode"></param>
         private async void AddGoalAsync(bool keepEditingMode)
         {
             this.IsBusy = true;
-            await Model.AddGoalAsync(this.BufferGoalItem.Model);
+            this.BufferGoalItem= await this.BufferGoalItem.SaveAsync();
+            this.GoalList.Add(this.BufferGoalItem);
             this.IsBusy = false;
-            GoalViewModel newBuffer=new GoalViewModel(GoalEditList.NewGoalChild());
+            GoalViewModel newBuffer=new GoalViewModel(GoalEdit.NewGoalEdit());
             if (this.BufferGoalItem == this.CurrentEditingItem)
             {
-                this.CurrentEditingItem = this.BufferGoalItem = newBuffer;
+                this.CurrentEditingItem = this.SelectedGoal;
             }
-            else
+            this.BufferGoalItem = newBuffer;
+            if (!keepEditingMode)
             {
-                this.BufferGoalItem = newBuffer;
+                if(this.CurrentEditingItem==null)
+                {
+                    this.IsEditModel = false;
+                    this.IsGoalDetialPanelShowed = false;
+                }
             }
-            if(!keepEditingMode)
-            this.IsEditModel = false;
+            
             
         }
+
+        GoalViewModel _selectedGoal;
+        public GoalViewModel SelectedGoal
+        {
+            get { return _selectedGoal; }
+            set
+            {
+                this.CurrentEditingItem = value;
+                this._selectedGoal = value;
+                RaisePropertyChanged(()=>SelectedGoal);
+            }
+        }
+
+        /// <summary>
+        /// 异步提交编辑结果
+        /// </summary>
         private async void SubmitGoalEditingAsync()
         {
             this.IsBusy = true;
-           await this.Model.SubmitGoalEditAsync(this.CurrentEditingItem.Model);
+            await this.CurrentEditingItem.SaveAsync();
             this.IsBusy = false;
         }
 

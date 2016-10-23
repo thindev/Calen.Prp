@@ -48,7 +48,7 @@
                                 <ColumnDefinition/>
                                 <ColumnDefinition Width="auto"/>
                             </Grid.ColumnDefinitions>
-                            <TextBox Name="txt_goalInput" Text="{Binding BufferGoalItem.Model.Content}" Style="{DynamicResource TextBoxStyle_Common}"  Background="{DynamicResource BlankColorKey}"  FontSize="{DynamicResource FontSize_Large}" BorderBrush="{DynamicResource PrimaryMedianColorKey}" VerticalContentAlignment="Center"  Foreground="{DynamicResource NormalForegroundKey}" mahapps:TextBoxHelper.Watermark="描述您的目标，按Enter键插入..." Padding="4,0" BorderThickness="1,1,1,1"
+                            <TextBox Name="txt_goalInput" Text="{Binding BufferGoalItem.Model.Content, UpdateSourceTrigger=PropertyChanged}" Style="{DynamicResource TextBoxStyle_Common}"  Background="{DynamicResource BlankColorKey}"  FontSize="{DynamicResource FontSize_Large}" BorderBrush="{DynamicResource PrimaryMedianColorKey}" VerticalContentAlignment="Center"  Foreground="{DynamicResource NormalForegroundKey}" mahapps:TextBoxHelper.Watermark="描述您的目标，按Enter键插入..." Padding="4,0" BorderThickness="1,1,1,1"
                       mahapps:TextBoxHelper.ClearTextButton="True"     
                       />
                             <Grid Grid.Column="1">
@@ -67,7 +67,7 @@
                     </Grid>
                 </Border>
                 <Border Grid.Row="1" Margin="0,14,0,0">
-                    <ListBox ItemsSource="{Binding GoalList}" SelectedItem="{Binding CurrentEditingItem}"></ListBox>
+                    <ListBox ItemsSource="{Binding GoalList}" SelectedItem="{Binding SelectedGoal}"></ListBox>
                 </Border>
             </Grid>
            

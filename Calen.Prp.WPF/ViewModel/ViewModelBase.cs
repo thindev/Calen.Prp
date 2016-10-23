@@ -18,6 +18,14 @@ namespace Calen.Prp.WPF.ViewModel
         public T Model
         {
             get { return _model;  }
+            protected set
+            {
+                if (!_model.Equals(value))
+                {
+                    _model = value;
+                    RaisePropertyChanged("");
+                }
+            }
         }
 
         public bool IsBusy

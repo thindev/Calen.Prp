@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using Csla;
 
 namespace Calen.Prp.Core.TimeManage
@@ -59,6 +60,17 @@ namespace Calen.Prp.Core.TimeManage
             get { return GetProperty(CommentListProperty); }
             set { SetProperty(CommentListProperty, value); }
         }
+
+       public static GoalEdit NewGoalEdit()
+        {
+            GoalEdit goal = DataPortal.Create<GoalEdit>();
+            goal.Id = Guid.NewGuid().ToString();
+            goal.StartTime = DateTime.Now;
+            goal.EndTime = goal.StartTime.AddDays(7);
+            return goal;
+        }
+
+      
 
     }
 }

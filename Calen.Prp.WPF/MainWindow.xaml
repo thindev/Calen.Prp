@@ -19,8 +19,8 @@
     Title="{Binding Title}"
     DataContext="{Binding Main, Source={StaticResource Locator}}"
     WindowStartupLocation="CenterScreen"
-    Height="640"
-    Width="1024">
+    Height="600"
+    Width="1000">
     <MahApps:MetroWindow.TitleTemplate>
         <DataTemplate>
             <TextBlock Text="{Binding }" Margin="12,0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="{DynamicResource PrimaryLightColorKey}" FontSize="{DynamicResource FontSize_Normal}" Opacity="0.9"/>
