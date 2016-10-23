@@ -5,18 +5,18 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Calen.Prp.WPF.View"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="300" ClipToBounds="True">
     <Grid>
-        <local:HidableContentControl IsSelected="{Binding IsGoalMenuSelected}">
-            <local:TargetsManageView/>
+        <local:HidableContentControl Transition="Right" IsSelected="{Binding IsGoalMenuSelected}">
+            <local:GoalsManageView />
         </local:HidableContentControl>
-        <local:HidableContentControl IsSelected="{Binding IsCalendarMenuSelected}">
+        <local:HidableContentControl Transition="Right" IsSelected="{Binding IsCalendarMenuSelected}">
             <local:MyCalendarView/>
         </local:HidableContentControl>
-        <local:HidableContentControl IsSelected="{Binding IsToDoListMenuSelected}">
+        <local:HidableContentControl Transition="Right" IsSelected="{Binding IsToDoListMenuSelected}">
             <local:ToDoListView/>
         </local:HidableContentControl>
-        <local:HidableContentControl IsSelected="{Binding IsDiaryMenuSelected}">
+        <local:HidableContentControl Transition="Right" IsSelected="{Binding IsDiaryMenuSelected}">
             <local:DiaryManageView/>
         </local:HidableContentControl>
     </Grid>

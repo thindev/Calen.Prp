@@ -19,5 +19,20 @@ namespace Calen.Prp.WPF.ViewModel
         {
             get { return _model;  }
         }
+
+        public bool IsBusy
+        {
+            get
+            {
+                return _isBusy;
+            }
+
+            set
+            {
+                Set(() => IsBusy, ref _isBusy, value);
+            }
+        }
+
+        bool _isBusy;
     }
 }

@@ -16,18 +16,8 @@
         <Border  Background="{DynamicResource PrimaryLightColorKey}"  BorderBrush="{DynamicResource PrimaryMedianColorKey}" BorderThickness="0,0,1,0">
             <local:TimeManageLeftSidePanel/>
         </Border>
-
-        <Grid Grid.Row="1" Grid.Column="1" >
-            <Grid.RowDefinitions>
-                <RowDefinition Height="42"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <Border Background="{DynamicResource PrimaryLightColorKey}">
-                <TextBlock Text="{Binding CurrentTitle}" FontSize="14" Foreground="{DynamicResource TitleForegroundKey}" VerticalAlignment="Center" Margin="12,0,0,0"/>
-            </Border>
-            <Border Grid.Row="1" Background="White">
-                <local:TimeManageContentPanel/>
-            </Border>
-        </Grid>
+        <Border Grid.Column="1" Grid.Row="1" Background="White">
+            <local:TimeManageContentPanel/>
+        </Border>
     </Grid>
 </UserControl>

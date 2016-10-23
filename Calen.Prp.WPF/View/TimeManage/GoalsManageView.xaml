@@ -1,12 +1,80 @@
-﻿<UserControl x:Class="Calen.Prp.WPF.View.TargetsManageView"
+﻿<UserControl x:Class="Calen.Prp.WPF.View.GoalsManageView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mahapps="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:local="clr-namespace:Calen.Prp.WPF.View"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-        <TextBlock Text="目标管理" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+             d:DesignHeight="300" d:DesignWidth="300" 
+             Background="{DynamicResource BlankColorKey}" >
+    <UserControl.Resources>
+       
+    </UserControl.Resources>
+    <Grid Grid.Row="1" Grid.Column="1" DataContext="{Binding GoalManager}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="42"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Background="{DynamicResource PrimaryLightColorKey}" >
+            <TextBlock Text="目标列表" FontSize="{DynamicResource FontSize_Normal}" Foreground="{DynamicResource TitleForegroundKey}" VerticalAlignment="Center" Margin="12,0,0,0"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="12,0">
+                <Button Style="{DynamicResource ButtonStyle_TransparentBackground}"  Padding="6" Command="{Binding CreateGoalCommand}">
+                    <StackPanel Orientation="Horizontal">
+                        <Path Fill="{Binding RelativeSource={RelativeSource AncestorType=Button},Path=Foreground}" Data="{DynamicResource Geometry_AddButtonIcon}" Height="18" Stretch="Uniform"></Path>
+                        <TextBlock Text="添加目标"  VerticalAlignment="Center" Margin="6,0,0,0"/>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="1" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid Margin="12">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Border >
+                    <Grid Height="40">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBox Name="txt_goalInput" Text="{Binding BufferGoalItem.Model.Content}" Style="{DynamicResource TextBoxStyle_Common}"  Background="{DynamicResource BlankColorKey}"  FontSize="{DynamicResource FontSize_Large}" BorderBrush="{DynamicResource PrimaryMedianColorKey}" VerticalContentAlignment="Center"  Foreground="{DynamicResource NormalForegroundKey}" mahapps:TextBoxHelper.Watermark="描述您的目标，按Enter键插入..." Padding="4,0" BorderThickness="1,1,1,1"
+                      mahapps:TextBoxHelper.ClearTextButton="True"     
+                      />
+                            <Grid Grid.Column="1">
+                                <ToggleButton Name="tgb_detail"  Style="{DynamicResource ToggleButtonStyle_GeometryContent}" Content="{DynamicResource Geometry_MoreButtonIcon}" Padding="9" BorderThickness="0,1"  BorderBrush="{DynamicResource PrimaryMedianColorKey}" ToolTip="详细设置"/>
+                                <Control Name="popUpAnchor" Height="0" Width="0" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+                            </Grid>
+
+                            <local:HdtPopup IsOpen="{Binding ElementName=tgb_detail,Path=IsChecked}" PopupAnimation="Slide" AllowsTransparency="True" PlacementTarget="{Binding ElementName=popUpAnchor}"   StaysOpen="False" Placement="Left" >
+                                <local:GoalDetailPopupView />
+                            </local:HdtPopup>
+
+                        </Grid>
+
+                        <Button Grid.Column="1" BorderThickness="0,1,1,1"  Style="{DynamicResource ButtonStyle_GeometryContent}" Content="{DynamicResource Geometry_AddButtonIcon}" Padding="9" BorderBrush="{DynamicResource PrimaryMedianColorKey}" ToolTip="添加"
+                                Command="{Binding AddGoalCommand}"></Button>
+                    </Grid>
+                </Border>
+                <Border Grid.Row="1" Margin="0,14,0,0">
+                    <ListBox ItemsSource="{Binding GoalList}" SelectedItem="{Binding CurrentEditingItem}"></ListBox>
+                </Border>
+            </Grid>
+           
+            <local:SlidePanel ExpandedWidth="300" HorizontalAlignment="Right" VerticalAlignment="Stretch" Grid.Column="1" IsOpened="{Binding IsGoalDetialPanelShowed}" >
+                <local:GoalEditPanel x:Name="goalEdit"/>
+            </local:SlidePanel>
+        </Grid>
+       
     </Grid>
 </UserControl>

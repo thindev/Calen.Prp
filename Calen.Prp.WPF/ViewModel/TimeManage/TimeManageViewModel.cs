@@ -19,6 +19,12 @@ namespace Calen.Prp.WPF.ViewModel.TimeManage
         ObservableCollection<ActivityViewModel> _activities = new ObservableCollection<ActivityViewModel>();
         ActivityViewModel _currentActivity;
 
+
+        public TimeManageViewModel()
+        {
+            _goalManager = new GoalManageViewModel(new Core.TimeManage.GoalEditList());
+        }
+
         public bool IsGoalMenuSelected
         {
             get
@@ -144,6 +150,13 @@ namespace Calen.Prp.WPF.ViewModel.TimeManage
                 }
                 Set(() => IsDiaryMenuSelected,ref _isDiaryMenuSelected,value);
             }
+        }
+
+        GoalManageViewModel _goalManager;
+        public GoalManageViewModel GoalManager
+        {
+            get { return _goalManager; }
+            //set { Set(() => GoalManager, ref _goalManager, value); }
         }
     }
 }

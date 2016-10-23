@@ -16,13 +16,15 @@ using System.Windows.Shapes;
 namespace Calen.Prp.WPF.View
 {
     /// <summary>
-    /// TargetsManageView.xaml 的交互逻辑
+    /// GoalEditPanel.xaml 的交互逻辑
     /// </summary>
-    public partial class GoalsManageView : UserControl
+    public partial class GoalEditPanel : UserControl
     {
-        public GoalsManageView()
+        
+        public GoalEditPanel()
         {
             InitializeComponent();
         }
     }
+
 }

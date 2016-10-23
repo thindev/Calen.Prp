@@ -36,7 +36,7 @@ namespace Calen.Prp.Core.TimeManage
         public string Description
         {
             get { return GetProperty(DescriptionProperty); }
-            set { GetProperty(DescriptionProperty, value); }
+            set { SetProperty(DescriptionProperty, value); }
         }
         public DateTime StartTime
         {
@@ -59,5 +59,6 @@ namespace Calen.Prp.Core.TimeManage
             get { return GetProperty(CommentListProperty); }
             set { SetProperty(CommentListProperty, value); }
         }
+
     }
 }

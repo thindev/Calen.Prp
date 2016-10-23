@@ -41,7 +41,7 @@ namespace Calen.Prp.WPF.View
        
         public HidableContentControl()
         {
-            this.Transition = MahApps.Metro.Controls.TransitionType.Left;
+          
         }
 
         public object HidableContent

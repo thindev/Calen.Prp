@@ -41,8 +41,8 @@
       <HintPath>..\packages\CSLA-Core.4.6.500\lib\net45\Csla.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Dragablz, Version=0.0.3.171, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dragablz.0.0.3.171\lib\net45\Dragablz.dll</HintPath>
+    <Reference Include="Dragablz, Version=0.0.3.173, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dragablz.0.0.3.173\lib\net45\Dragablz.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="GalaSoft.MvvmLight, Version=5.3.0.19026, Culture=neutral, PublicKeyToken=e7570ab207bcb616, processorArchitecture=MSIL">
@@ -104,10 +104,18 @@
     <Compile Include="ViewModel\TimeManage\TimeManageViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="View\HdtPopup.cs" />
+    <Compile Include="View\SlidePanel.cs" />
     <Compile Include="View\TimeManage\DiaryManageView.xaml.cs">
       <DependentUpon>DiaryManageView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\HidableContentControl.cs" />
+    <Compile Include="View\TimeManage\GoalDetailPopupView.xaml.cs">
+      <DependentUpon>GoalDetailPopupView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TimeManage\GoalEditPanel.xaml.cs">
+      <DependentUpon>GoalEditPanel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\TimeManage\MyCalendarView.xaml.cs">
       <DependentUpon>MyCalendarView.xaml</DependentUpon>
     </Compile>
@@ -175,6 +183,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\TimeManage\DiaryManageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TimeManage\GoalDetailPopupView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TimeManage\GoalEditPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

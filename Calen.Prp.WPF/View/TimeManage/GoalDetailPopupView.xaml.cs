@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Calen.Prp.WPF.View
 {
     /// <summary>
-    /// TargetsManageView.xaml 的交互逻辑
+    /// GoalDetailPopupView.xaml 的交互逻辑
     /// </summary>
-    public partial class GoalsManageView : UserControl
+    public partial class GoalDetailPopupView : UserControl
     {
-        public GoalsManageView()
+        public GoalDetailPopupView()
         {
             InitializeComponent();
         }

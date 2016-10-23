@@ -12,41 +12,41 @@
             <ColumnDefinition Name="rightColumn"/>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.ColumnSpan="2">
-            <ToggleButton Name="navTglb" IsChecked="True" Checked="ToggleButton_Checked" Unchecked="ToggleButton_Unchecked" Style="{DynamicResource GeometryContentToggleButtonStyle}" Height="42" Padding="12,15" HorizontalAlignment="Stretch" Content="{DynamicResource NavigationMenuListIconGeometry}"/>
+            <ToggleButton Name="navTglb" IsChecked="True" Checked="ToggleButton_Checked" Unchecked="ToggleButton_Unchecked" Style="{DynamicResource ToggleButtonStyle_GeometryContent}" Height="42" Padding="12,15" HorizontalAlignment="Stretch" Content="{DynamicResource Geometry_NavigationMenuListIcon}"/>
             <StackPanel >
                 <RadioButton IsChecked="{Binding IsGoalMenuSelected}" GroupName="time_manage" Style="{DynamicResource NavigationMenuItemStyle}" ToolTip="{Binding ElementName=tbl2,Path=Text}">
                     <StackPanel Orientation="Horizontal" >
-                        <Path Margin="14" Fill="{Binding RelativeSource={RelativeSource AncestorType=RadioButton},Path=Foreground}" Stretch="Uniform" Height="16" Width="16" Data="{DynamicResource TargetIconGeometry}"/>
-                        <TextBlock Name="tbl2" Text="目标" VerticalAlignment="Center" Margin="2,0" FontSize="14"/>
+                        <Path Margin="14" Fill="{Binding RelativeSource={RelativeSource AncestorType=RadioButton},Path=Foreground}" Stretch="Uniform" Height="16" Width="16" Data="{DynamicResource Geometry_TargetIcon}"/>
+                        <TextBlock Name="tbl2" Text="目标管理" VerticalAlignment="Center" Margin="2,0" FontSize="{DynamicResource FontSize_Normal}"/>
                     </StackPanel>
                 </RadioButton>
                 <RadioButton IsChecked="{Binding IsCalendarMenuSelected}" GroupName="time_manage" Style="{DynamicResource NavigationMenuItemStyle}" ToolTip="{Binding ElementName=tbl1,Path=Text}">
                     <StackPanel Orientation="Horizontal" >
-                        <Path Margin="14" Fill="{Binding RelativeSource={RelativeSource AncestorType=RadioButton},Path=Foreground}" Stretch="Uniform" Height="16" Width="16" Data="{DynamicResource CalendarIconGeometry }"/>
-                        <TextBlock Name="tbl1" Text="我的日历" VerticalAlignment="Center" Margin="2,0" FontSize="14"/>
+                        <Path Margin="14" Fill="{Binding RelativeSource={RelativeSource AncestorType=RadioButton},Path=Foreground}" Stretch="Uniform" Height="16" Width="16" Data="{DynamicResource Geometry_CalendarIcon }"/>
+                        <TextBlock Name="tbl1" Text="我的日历" VerticalAlignment="Center" Margin="2,0" FontSize="{DynamicResource FontSize_Normal}"/>
                     </StackPanel>
                 </RadioButton>
 
                 <RadioButton GroupName="time_manage" IsChecked="{Binding IsToDoListMenuSelected}" Style="{DynamicResource NavigationMenuItemStyle}" ToolTip="{Binding ElementName=tbl4,Path=Text}">
                     <StackPanel Orientation="Horizontal" >
-                        <Path Margin="14" Fill="{Binding RelativeSource={RelativeSource AncestorType=RadioButton},Path=Foreground}" Stretch="Uniform" Height="16" Width="16" Data="{DynamicResource ActivityIconGeometry}"/>
-                        <TextBlock Name="tbl4" Text="待办事项" VerticalAlignment="Center" Margin="2,0" FontSize="14"/>
+                        <Path Margin="14" Fill="{Binding RelativeSource={RelativeSource AncestorType=RadioButton},Path=Foreground}" Stretch="Uniform" Height="16" Width="16" Data="{DynamicResource Geometry_ActivityIcon}"/>
+                        <TextBlock Name="tbl4" Text="待办事项" VerticalAlignment="Center" Margin="2,0" FontSize="{DynamicResource FontSize_Normal}"/>
                     </StackPanel>
                 </RadioButton>
                 <RadioButton GroupName="time_manage" IsChecked="{Binding IsDiaryMenuSelected}" Style="{DynamicResource NavigationMenuItemStyle}" ToolTip="{Binding ElementName=tbl5,Path=Text}">
                     <StackPanel Orientation="Horizontal" >
-                        <Path Margin="14" Fill="{Binding RelativeSource={RelativeSource AncestorType=RadioButton},Path=Foreground}" Stretch="Uniform" Height="16" Width="16" Data="{DynamicResource DiaryIconGeomety}"/>
-                        <TextBlock Name="tbl5" Text="日记" VerticalAlignment="Center" Margin="2,0" FontSize="14"/>
+                        <Path Margin="14" Fill="{Binding RelativeSource={RelativeSource AncestorType=RadioButton},Path=Foreground}" Stretch="Uniform" Height="16" Width="16" Data="{DynamicResource Geomety_DiaryIcon}"/>
+                        <TextBlock Name="tbl5" Text="时间日记" VerticalAlignment="Center" Margin="2,0" FontSize="{DynamicResource FontSize_Normal}"/>
                     </StackPanel>
                 </RadioButton>
-                <Grid Margin="0,32,0,0">
-                    <ToggleButton Name="tagsToggleButton" IsChecked="{Binding ElementName=navTglb,Path=IsChecked,Mode=TwoWay}" Style="{DynamicResource GeometryContentToggleButtonStyle}" Content="{DynamicResource ActivityListIconGeometry}" VerticalAlignment="Top" HorizontalAlignment="Stretch" Height="42" Padding="14" Visibility="Collapsed"  ToolTip="活动标签"/>
+                <Grid Margin="0,20,0,0">
+                    <ToggleButton Name="tagsToggleButton" IsChecked="{Binding ElementName=navTglb,Path=IsChecked,Mode=TwoWay}" Style="{DynamicResource ToggleButtonStyle_GeometryContent}" Content="{DynamicResource Geometry_ActivityListIcon}" VerticalAlignment="Top" HorizontalAlignment="Stretch" Height="42" Padding="14" Visibility="Collapsed"  ToolTip="活动标签"/>
                     <Grid Name="activitiesContainer" >
                         <Grid.RowDefinitions>
                             <RowDefinition Height="30"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <TextBlock Text="活动" Foreground="{DynamicResource TitleForegroundKey}" FontSize="14" VerticalAlignment="Center" Margin="10,0"/>
+                        <TextBlock Text="活动" Foreground="{DynamicResource TitleForegroundKey}" FontSize="{DynamicResource FontSize_Normal}" VerticalAlignment="Center" Margin="10,0"/>
                         <ListBox Grid.Row="1" BorderThickness="0" ItemsSource="{Binding Activities}" Background="Transparent" SelectedItem="{Binding CurrentActivity}">
                             <ListBox.ItemContainerStyle>
                                 <Style TargetType="ListBoxItem">
@@ -55,8 +55,8 @@
                                             <ControlTemplate TargetType="ListBoxItem">
                                                 <RadioButton GroupName="time_manage" Style="{DynamicResource NavigationMenuItemStyle}" IsChecked="{Binding RelativeSource={RelativeSource AncestorType=ListBoxItem},Path=IsSelected,Mode=TwoWay}">
                                                     <StackPanel Orientation="Horizontal" >
-                                                        <Path Margin="14" Fill="{Binding RelativeSource={RelativeSource AncestorType=RadioButton},Path=Foreground}" Stretch="Uniform" Height="16" Width="16" Data="{DynamicResource ActivityItemIconGeometry}"/>
-                                                        <TextBlock  Text="{Binding Name}" VerticalAlignment="Center" Margin="2,0" FontSize="14"/>
+                                                        <Path Margin="14" Fill="{Binding RelativeSource={RelativeSource AncestorType=RadioButton},Path=Foreground}" Stretch="Uniform" Height="16" Width="16" Data="{DynamicResource Geometry_ActivityItemIcon}"/>
+                                                        <TextBlock  Text="{Binding Name}" VerticalAlignment="Center" Margin="2,0" FontSize="{DynamicResource FontSize_Normal}"/>
                                                     </StackPanel>
                                                 </RadioButton>
                                             </ControlTemplate>

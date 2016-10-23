@@ -1,0 +1,48 @@
+﻿<UserControl x:Class="Calen.Prp.WPF.View.GoalEditPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mahapps="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:local="clr-namespace:Calen.Prp.WPF.View"
+             mc:Ignorable="d" 
+             BorderThickness="1"
+              BorderBrush="{DynamicResource PrimaryDarkColorKey}"
+             Background="{DynamicResource BlankColorKey}"
+             >
+    <Grid Margin="12">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Vertical" TextElement.FontSize="{DynamicResource FontSize_Normal}" TextElement.Foreground="{DynamicResource TitleForegroundKey}" DataContext="{Binding CurrentEditingItem}">
+            <StackPanel Margin="0,0,0,8">
+                <TextBox Style="{DynamicResource TextBoxStyle_Common}" 
+                        Text="{Binding Model.Content}"
+                         BorderBrush="{DynamicResource PrimaryMedianColorKey}" VerticalContentAlignment="Top"  Foreground="{DynamicResource NormalForegroundKey}" mahapps:TextBoxHelper.Watermark="描述您的目标..."  BorderThickness="1,1,1,1"
+                      mahapps:TextBoxHelper.ClearTextButton="True" Height="52"  ></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,8">
+                <TextBlock Text="开始日期：" VerticalAlignment="Center"/>
+                <DatePicker Width="204" FontSize="{DynamicResource FontSize_Normal}" SelectedDate="{Binding Model.StartTime}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,8">
+                <TextBlock Text="截止日期：" VerticalAlignment="Center"/>
+                <DatePicker Width="204" FontSize="{DynamicResource FontSize_Normal}" SelectedDate="{Binding Model.EndTime}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,8">
+                <TextBlock Text="等级：" VerticalAlignment="Center"/>
+
+            </StackPanel>
+            <StackPanel Margin="0,8">
+                <TextBlock Text="备注：" VerticalAlignment="Center"/>
+                <TextBox Style="{DynamicResource TextBoxStyle_Common}" Margin="0,8" TextWrapping="Wrap" AcceptsReturn="True" VerticalAlignment="Center" Height="84" FontSize="{DynamicResource FontSize_Normal}" Foreground="{DynamicResource NormalForegroundKey}" Text="{Binding Model.Description,UpdateSourceTrigger=PropertyChanged}"/>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Visibility="{Binding CurrentEditingItem.Model.IsDirty,Converter={StaticResource BooleanToVisibilityConverter},NotifyOnSourceUpdated=True}">
+            <!--<Button Style="{StaticResource ButtonStyle_FlatSquare}"  BorderThickness="0" Padding="12,4" Margin="8,0" Command="{Binding CanelEditCommand}">取消</Button>-->
+            <Button Style="{StaticResource ButtonStyle_AccentedSquare}"   BorderThickness="0" Padding="12,4" Margin="8,0" Command="{Binding SubmitEditCommand}">保存</Button>
+
+        </StackPanel>
+    </Grid>
+</UserControl>

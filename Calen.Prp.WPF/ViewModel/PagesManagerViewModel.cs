@@ -26,7 +26,7 @@ namespace Calen.Prp.WPF.ViewModel
             //startPage.Index = 0;
             //startPage.Title = "开始";
             //startPage.Content = "start";
-            //startPage.IconGeometry = PathGeometry.Parse(Resources.GeometryStrings.HomePageIconData);
+            //startPage.IconGeometry = PathGeometry.Parse(Resources.GeometryStrings.Geometry_HomePageIcon);
             //_pageList.Add(startPage);
             PageViewModel timeManagePage = new PageViewModel();
             timeManagePage.Index = 1;
@@ -36,37 +36,37 @@ namespace Calen.Prp.WPF.ViewModel
             tm.Activities.Add(new ActivityViewModel() { Name = "学习" });
             tm.Activities.Add(new ActivityViewModel() { Name = "工作" });
             tm.Activities.Add(new ActivityViewModel() { Name = "生活" });
-            timeManagePage.IconGeometry = AppResourcesManager.GetResource<Geometry>("TimeManagePageIconData");
+            timeManagePage.IconGeometry = AppResourcesManager.GetResource<Geometry>("Geometry_TimeManagePageIcon");
             PageList.Add(timeManagePage);
             
             PageViewModel knowledgeAndExperiencePage = new PageViewModel();
             knowledgeAndExperiencePage.Index = 2;
             knowledgeAndExperiencePage.Title = "知识管理";
-            knowledgeAndExperiencePage.IconGeometry = AppResourcesManager.GetResource<Geometry>("KnowledgeManagePageIconData");
+            knowledgeAndExperiencePage.IconGeometry = AppResourcesManager.GetResource<Geometry>("Geometry_KnowledgeManagePageIcon");
             _pageList.Add(knowledgeAndExperiencePage);
 
             PageViewModel informationChannelsPage = new PageViewModel();
             informationChannelsPage.Index = 4;
             informationChannelsPage.Title = "资讯管理";
-            informationChannelsPage.IconGeometry = AppResourcesManager.GetResource<Geometry>("InformationManagePageIconData");
+            informationChannelsPage.IconGeometry = AppResourcesManager.GetResource<Geometry>("Geometry_InformationManagePageIcon");
             _pageList.Add(informationChannelsPage);
 
             PageViewModel contactsManagePage = new PageViewModel();
             contactsManagePage.Index = 3;
             contactsManagePage.Title = "人脉管理";
-            contactsManagePage.IconGeometry = AppResourcesManager.GetResource<Geometry>("ContactsManagePageIconData");
+            contactsManagePage.IconGeometry = AppResourcesManager.GetResource<Geometry>("Geometry_ContactsManagePageIcon");
             _pageList.Add(contactsManagePage);
             
             PageViewModel healthManagePage = new PageViewModel();
             healthManagePage.Index = 4;
             healthManagePage.Title = "健康管理";
-            healthManagePage.IconGeometry = AppResourcesManager.GetResource<Geometry>("HealthManagePageIconData");
+            healthManagePage.IconGeometry = AppResourcesManager.GetResource<Geometry>("Geometry_HealthManagePageIcon");
             _pageList.Add(healthManagePage);
 
             PageViewModel lifeServicesManagePage = new PageViewModel();
             lifeServicesManagePage.Index = 4;
             lifeServicesManagePage.Title = "生活服务";
-            lifeServicesManagePage.IconGeometry = AppResourcesManager.GetResource<Geometry>("LifeServiceManagePageIconData");
+            lifeServicesManagePage.IconGeometry = AppResourcesManager.GetResource<Geometry>("Geometry_LifeServiceManagePageIconData");
             _pageList.Add(lifeServicesManagePage);
         }
     }
