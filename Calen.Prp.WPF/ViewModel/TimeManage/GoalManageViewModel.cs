@@ -220,13 +220,10 @@ namespace Calen.Prp.WPF.ViewModel.TimeManage
                 this.CurrentEditingItem = this.SelectedGoal;
             }
             this.BufferGoalItem = newBuffer;
-            if (!keepEditingMode)
+            if (this.CurrentEditingItem == null)
             {
-                if(this.CurrentEditingItem==null)
-                {
-                    this.IsEditModel = false;
-                    this.IsGoalDetialPanelShowed = false;
-                }
+                this.IsEditModel = false;
+                this.IsGoalDetialPanelShowed = false;
             }
         }
 

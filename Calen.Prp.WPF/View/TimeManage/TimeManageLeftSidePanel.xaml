@@ -47,7 +47,7 @@
                             <RowDefinition Height="30"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <TextBlock Text="活动" Foreground="{DynamicResource TitleForegroundKey}" FontSize="{DynamicResource FontSize_Normal}" VerticalAlignment="Center" Margin="10,0"/>
+                        <TextBlock Text="活动" Foreground="{DynamicResource Foreground_TitleKey}" FontSize="{DynamicResource FontSize_Normal}" VerticalAlignment="Center" Margin="10,0"/>
                         <ListBox Grid.Row="1" BorderThickness="0" ItemsSource="{Binding Activities}" Background="Transparent" SelectedItem="{Binding CurrentActivity}">
                             <ListBox.ItemContainerStyle>
                                 <Style TargetType="ListBoxItem">

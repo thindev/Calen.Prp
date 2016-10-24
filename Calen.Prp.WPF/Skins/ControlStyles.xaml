@@ -5,7 +5,7 @@
     <Style x:Key="ToggleButtonStyle_GeometryContent" TargetType="ToggleButton">
         <Style.Setters>
             <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="Foreground" Value="{DynamicResource NormalForegroundKey}"/>
+            <Setter Property="Foreground" Value="{DynamicResource Foreground_NormalKey}"/>
             <Setter Property="BorderBrush" Value="{x:Null}"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
@@ -36,7 +36,7 @@
     <Style x:Key="NavigationMenuItemStyle" TargetType="RadioButton">
         <Style.Setters>
             <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="Foreground" Value="{DynamicResource NormalForegroundKey}"/>
+            <Setter Property="Foreground" Value="{DynamicResource Foreground_NormalKey}"/>
             <Setter Property="BorderBrush" Value="{x:Null}"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
@@ -71,7 +71,7 @@
     <Style x:Key="ButtonStyle_GeometryContent" TargetType="Button">
         <Style.Setters>
             <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="Foreground" Value="{DynamicResource NormalForegroundKey}"/>
+            <Setter Property="Foreground" Value="{DynamicResource Foreground_NormalKey}"/>
             <Setter Property="BorderBrush" Value="{DynamicResource PrimaryMedianColorKey}"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
@@ -104,7 +104,7 @@
     <Style x:Key="ButtonStyle_TransparentBackground" TargetType="Button">
         <Style.Setters>
             <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="Foreground" Value="{DynamicResource NormalForegroundKey}"/>
+            <Setter Property="Foreground" Value="{DynamicResource Foreground_NormalKey}"/>
             <Setter Property="BorderBrush" Value="{DynamicResource PrimaryMedianColorKey}"/>
             <Setter Property="FontSize" Value="{DynamicResource FontSize_Normal}"/>
             <Setter Property="BorderThickness" Value="0"/>
@@ -163,7 +163,7 @@
     <Style x:Key="ButtonStyle_FlatSquare" TargetType="Button">
         <Style.Setters>
             <Setter Property="Background" Value="{DynamicResource PrimaryMedianColorKey}"/>
-            <Setter Property="Foreground" Value="{DynamicResource NormalForegroundKey}"/>
+            <Setter Property="Foreground" Value="{DynamicResource Foreground_NormalKey}"/>
             <Setter Property="BorderBrush" Value="{DynamicResource PrimaryMedianColorKey}"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="FontSize" Value="{DynamicResource FontSize_Normal}"/>
@@ -208,7 +208,7 @@
         </ControlTemplate.Triggers>
     </ControlTemplate>
     <Style x:Key="TextBoxStyle_Common" TargetType="{x:Type TextBox}">
-        <Setter Property="Foreground" Value="{DynamicResource NormalForegroundKey}"/>
+        <Setter Property="Foreground" Value="{DynamicResource Foreground_NormalKey}"/>
         <Setter Property="Background" Value="{DynamicResource BlankColorKey}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource PrimaryDarkColorKey}"/>
         <Setter Property="BorderThickness" Value="1"/>

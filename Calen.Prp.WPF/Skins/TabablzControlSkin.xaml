@@ -380,7 +380,7 @@
 
     <Style x:Key="MahAppsTrapezoidDragableTabItemStyle"  TargetType="{x:Type dragablz:DragablzItem}">
         <Setter Property="FocusVisualStyle" Value="{StaticResource MahAppsFocusVisual}"/>
-        <Setter Property="Foreground" Value="{DynamicResource NormalForegroundKey}"/>
+        <Setter Property="Foreground" Value="{DynamicResource Foreground_NormalKey}"/>
         <Setter Property="Background" Value="{DynamicResource PrimaryLightColorKey}"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
         <Setter Property="BorderThickness" Value="0"/>
