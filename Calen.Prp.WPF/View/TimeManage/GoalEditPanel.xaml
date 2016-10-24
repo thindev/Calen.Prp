@@ -35,7 +35,7 @@
                     <TextBox Style="{DynamicResource TextBoxStyle_Common}" 
                         Text="{Binding Model.Content,UpdateSourceTrigger=PropertyChanged}"
                          BorderBrush="{DynamicResource PrimaryMedianColorKey}" VerticalContentAlignment="Top"  Foreground="{DynamicResource NormalForegroundKey}" mahapps:TextBoxHelper.Watermark="描述您的目标..."  BorderThickness="1,1,1,1"
-                      mahapps:TextBoxHelper.ClearTextButton="{Binding Model.IsNew}" Height="64"  TextWrapping="NoWrap" ></TextBox>
+                      mahapps:TextBoxHelper.ClearTextButton="{Binding Model.IsNew}" Height="64"  TextWrapping="Wrap" ></TextBox>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0,8">
                     <TextBlock Text="开始日期：" VerticalAlignment="Center"/>

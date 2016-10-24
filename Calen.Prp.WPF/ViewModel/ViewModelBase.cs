@@ -23,7 +23,7 @@ namespace Calen.Prp.WPF.ViewModel
                 if (!_model.Equals(value))
                 {
                     _model = value;
-                    RaisePropertyChanged("");
+                    RaisePropertyChanged(()=>Model);
                 }
             }
         }

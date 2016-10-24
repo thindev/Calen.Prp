@@ -11,8 +11,6 @@ namespace Calen.Prp.WPF.View
 {
     public class HdtPopup : Popup
     {
-        [DllImport("user32.dll")]
-        static extern IntPtr SetActiveWindow(IntPtr hWnd);
         static HdtPopup()
         {
             EventManager.RegisterClassHandler(typeof(HdtPopup), Popup.PreviewGotKeyboardFocusEvent, new KeyboardFocusChangedEventHandler(OnPreviewGotKeyboardFocus), true);
@@ -26,10 +24,15 @@ namespace Calen.Prp.WPF.View
                 var hwndSource = PresentationSource.FromVisual(textBox) as HwndSource;
                 if (hwndSource != null)
                 {
-                    SetActiveWindow(hwndSource.Handle);
+                    NativeMethods.SetActiveWindow(hwndSource.Handle);
                 }
             }
         }
+    }
+    internal class NativeMethods
+    {
+        [DllImport("user32.dll")]
+        internal static extern IntPtr SetActiveWindow(IntPtr hWnd);
     }
 }
 

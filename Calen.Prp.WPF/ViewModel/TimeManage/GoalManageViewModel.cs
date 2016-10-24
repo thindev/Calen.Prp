@@ -212,7 +212,7 @@ namespace Calen.Prp.WPF.ViewModel.TimeManage
         {
             this.IsBusy = true;
             this.BufferGoalItem= await this.BufferGoalItem.SaveAsync();
-            this.GoalList.Add(this.BufferGoalItem);
+            this.GoalList.Insert(0,this.BufferGoalItem);
             this.IsBusy = false;
             GoalViewModel newBuffer=new GoalViewModel(GoalEdit.NewGoalEdit());
             if (this.BufferGoalItem == this.CurrentEditingItem)
@@ -228,8 +228,6 @@ namespace Calen.Prp.WPF.ViewModel.TimeManage
                     this.IsGoalDetialPanelShowed = false;
                 }
             }
-            
-            
         }
 
         GoalViewModel _selectedGoal;

@@ -5,7 +5,7 @@
     <SolidColorBrush x:Key="FullColorKey" Color="DarkGray"/>
     <SolidColorBrush x:Key="PrimaryDarkColorKey" Color="#FFD2D2D2"/>
     <SolidColorBrush x:Key="PrimaryMedianColorKey" Color="#FFE4E4E4"/>
-    <SolidColorBrush x:Key="PrimaryColorKey" Color="#FFF0F0F0"/>
+    <SolidColorBrush x:Key="PrimaryColorKey" Color="#FFECECEC"/>
     <SolidColorBrush x:Key="PrimaryLightColorKey" Color="#FFF6F6F6"/>
     <SolidColorBrush x:Key="BlankColorKey" Color="White"/>
     <SolidColorBrush x:Key="NormalForegroundKey" Color="#FF323232"/>

@@ -24,5 +24,10 @@ namespace Calen.Prp.WPF.View
         {
             InitializeComponent();
         }
+
+        private void txt_goalInput_Loaded(object sender, RoutedEventArgs e)
+        {
+            Keyboard.Focus(this.txt_goalInput);
+        }
     }
 }
