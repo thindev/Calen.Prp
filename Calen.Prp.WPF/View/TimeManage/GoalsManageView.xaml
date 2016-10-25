@@ -67,8 +67,8 @@
 							Command="{Binding AddGoalCommand}"/>
                     </Grid>
                 </Border>
-                <Border Grid.Row="1" Margin="0,18,0,0">
-                    <ListBox ItemsSource="{Binding GoalList}" SelectedItem="{Binding SelectedGoal}" AlternationCount="2" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Tag="{Binding ElementName=rootLayout,Path=DataContext}">
+                <Border Grid.Row="1" Margin="0,10,0,0">
+                    <ListBox ItemsSource="{Binding GoalList}" SelectedItem="{Binding SelectedGoal}" AlternationCount="2" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Tag="{Binding ElementName=rootLayout,Path=DataContext}" ScrollViewer.CanContentScroll="False">
                         <ListBox.ItemContainerStyle>
                             <Style TargetType="{x:Type ListBoxItem}">
                                 <Setter Property="Template" >
@@ -85,6 +85,7 @@
                                                         <ColumnDefinition Width="auto"/>
                                                     </Grid.ColumnDefinitions>
                                                     <TextBlock   Text="{Binding Model.Content}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" ToolTip="{Binding Model.Content}"/>
+                                                    <local:StarLevelIndicator Grid.Column="1" Margin="14,13"/>
                                                     <TextBlock Grid.Column="2"  Text="{Binding Model.EndTime, StringFormat=yyyy-MM-dd}" VerticalAlignment="Center" FontSize="{DynamicResource FontSize_Small}" Foreground="{DynamicResource Foreground_LightKey}"/>
                                                 </Grid>
                                             </Border>

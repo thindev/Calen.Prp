@@ -9,8 +9,8 @@
              BorderThickness="1,0,0,0"
               BorderBrush="{DynamicResource PrimaryMedianColorKey}"
              Background="{DynamicResource BlankColorKey}"
-             >
-    <Grid>
+             ScrollViewer.VerticalScrollBarVisibility="Auto">
+    <Grid Width="300">
         <Grid.RowDefinitions>
             <RowDefinition Height="42"/>
             <RowDefinition/>
@@ -37,18 +37,18 @@
                          BorderBrush="{DynamicResource PrimaryMedianColorKey}" VerticalContentAlignment="Top"  Foreground="{DynamicResource Foreground_NormalKey}" mahapps:TextBoxHelper.Watermark="描述您的目标..."   Margin="-6" 
                       mahapps:TextBoxHelper.ClearTextButton="{Binding Model.IsNew}"  TextWrapping="Wrap" FontWeight="Bold" FontSize="{DynamicResource FontSize_Large}" Padding="0,4"></TextBox>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="0,8">
+                <DockPanel Margin="0,8">
                     <TextBlock Text="设立时间：" VerticalAlignment="Center"/>
-                    <DatePicker Width="204" FontSize="{DynamicResource FontSize_Normal}"  SelectedDate="{Binding Model.StartTime}"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="0,8">
+                    <DatePicker  FontSize="{DynamicResource FontSize_Normal}"  SelectedDate="{Binding Model.StartTime}"/>
+                </DockPanel>
+                <DockPanel  Margin="0,8">
                     <TextBlock Text="完成期限：" VerticalAlignment="Center"/>
-                    <DatePicker Width="204" FontSize="{DynamicResource FontSize_Normal}" SelectedDate="{Binding Model.EndTime}"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="0,8">
+                    <DatePicker  FontSize="{DynamicResource FontSize_Normal}" SelectedDate="{Binding Model.EndTime}"/>
+                </DockPanel>
+                <DockPanel  Margin="0,8">
                     <TextBlock Text="等级：" VerticalAlignment="Center"/>
 
-                </StackPanel>
+                </DockPanel>
                 <StackPanel Margin="0,8">
                     <TextBlock Text="备注：" VerticalAlignment="Center"/>
                     <TextBox Style="{DynamicResource TextBoxStyle_Common}" Margin="0,8" TextWrapping="Wrap" AcceptsReturn="True" VerticalAlignment="Center" Height="84" FontSize="{DynamicResource FontSize_Normal}" Foreground="{DynamicResource Foreground_NormalKey}" Text="{Binding Model.Description,UpdateSourceTrigger=PropertyChanged}"/>
