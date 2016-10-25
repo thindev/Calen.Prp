@@ -34,6 +34,25 @@ namespace Calen.Prp.WPF.ViewModel.TimeManage
         ICommand _cancelEditCommand;
         ICommand _addGoalCommand;
         ICommand _submitEditCommand;
+        ICommand _showSelectedItemDetailCommand;
+        public ICommand ShowSelectedItemDetailCommand
+        {
+            get
+            {
+                if(_showSelectedItemDetailCommand==null)
+                {
+                    _showSelectedItemDetailCommand = new RelayCommand(ShowDetailAction);
+                }
+                return _showSelectedItemDetailCommand;
+            }
+        }
+
+        private void ShowDetailAction()
+        {
+            this.IsEditModel = true;
+            this.IsGoalDetialPanelShowed = true;
+        }
+
         public ICommand AddGoalCommand
         {
             get
@@ -196,10 +215,6 @@ namespace Calen.Prp.WPF.ViewModel.TimeManage
             {
                
                     Set(() => CurrentEditingItem, ref _currentEditingItem, value);
-                if (CurrentEditingItem != null)
-                {
-                    IsEditModel = true;
-                }
             }
         }
         GoalViewModel _currentEditingItem;
@@ -220,6 +235,7 @@ namespace Calen.Prp.WPF.ViewModel.TimeManage
                 this.CurrentEditingItem = this.SelectedGoal;
             }
             this.BufferGoalItem = newBuffer;
+
             if (this.CurrentEditingItem == null)
             {
                 this.IsEditModel = false;
@@ -247,7 +263,10 @@ namespace Calen.Prp.WPF.ViewModel.TimeManage
             this.IsBusy = true;
             await this.CurrentEditingItem.SaveAsync();
             this.IsBusy = false;
+            this.IsEditModel = false;
+            this.IsGoalDetialPanelShowed = false;
         }
+
 
     }
 }

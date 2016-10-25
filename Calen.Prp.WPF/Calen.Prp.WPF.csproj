@@ -107,6 +107,9 @@
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="View\HdtPopup.cs" />
     <Compile Include="View\SlidePanel.cs" />
+    <Compile Include="View\StarLevelIndenticator.xaml.cs">
+      <DependentUpon>StarLevelIndenticator.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\TimeManage\DiaryManageView.xaml.cs">
       <DependentUpon>DiaryManageView.xaml</DependentUpon>
     </Compile>
@@ -182,6 +185,10 @@
     <Page Include="Skins\Blue.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\StarLevelIndenticator.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\TimeManage\DiaryManageView.xaml">
       <SubType>Designer</SubType>
