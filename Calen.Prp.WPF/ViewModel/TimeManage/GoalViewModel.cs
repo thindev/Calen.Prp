@@ -12,9 +12,13 @@ namespace Calen.Prp.WPF.ViewModel.TimeManage
 {
     public class GoalViewModel : ViewModelBase<GoalEdit>
     {
+        static int i = 0;
         public GoalViewModel(GoalEdit model) : base(model)
         {
+            T = i++;
         }
+
+        public int T { get; set; }
         ICommand _saveCommand;
         public ICommand SaveCommand
         {

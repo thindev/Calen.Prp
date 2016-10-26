@@ -46,8 +46,8 @@
                     <DatePicker  FontSize="{DynamicResource FontSize_Normal}" SelectedDate="{Binding Model.EndTime}"/>
                 </DockPanel>
                 <DockPanel  Margin="0,8">
-                    <TextBlock Text="等级：" VerticalAlignment="Center"/>
-
+                    <TextBlock Text="重要等级：" VerticalAlignment="Center"/>
+                    <local:StarLevelIndicator Margin="4,0" Height="16" CurrentLevel="{Binding Model.Level,Mode=TwoWay}" VerticalAlignment="Center"/>
                 </DockPanel>
                 <StackPanel Margin="0,8">
                     <TextBlock Text="备注：" VerticalAlignment="Center"/>

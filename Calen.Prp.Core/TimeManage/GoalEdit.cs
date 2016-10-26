@@ -17,6 +17,7 @@ namespace Calen.Prp.Core.TimeManage
         public static readonly PropertyInfo<DateTime> EndTimeProperty = RegisterProperty<DateTime>(p => p.EndTime);
         public static readonly PropertyInfo<int> LevelProperty = RegisterProperty<int>(p => p.Level);
         public static readonly PropertyInfo<CommentEditList> CommentListProperty = RegisterProperty<CommentEditList>(p => p.CommentList);
+        public static readonly PropertyInfo<bool> IsAchievedProperty = RegisterProperty<bool>(p => p.IsAchieved);
         public string Id
         {
             get { return GetProperty(IdProperty); }
@@ -61,12 +62,19 @@ namespace Calen.Prp.Core.TimeManage
             set { SetProperty(CommentListProperty, value); }
         }
 
-       public static GoalEdit NewGoalEdit()
+        public bool IsAchieved
+        {
+            get { return GetProperty(IsAchievedProperty); }
+            set { SetProperty(IsAchievedProperty, value); }
+        }
+
+        public static GoalEdit NewGoalEdit()
         {
             GoalEdit goal = DataPortal.Create<GoalEdit>();
             goal.Id = Guid.NewGuid().ToString();
             goal.StartTime = DateTime.Now;
             goal.EndTime = goal.StartTime.AddDays(7);
+            goal.Level = 1;
             return goal;
         }
 

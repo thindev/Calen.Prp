@@ -10,14 +10,26 @@ using Csla;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
 using System.Windows;
+using System.Windows.Data;
+using System.ComponentModel;
 
 namespace Calen.Prp.WPF.ViewModel.TimeManage
 {
     public class GoalManageViewModel : ViewModelBase<GoalEditManager>
     {
+        ListCollectionView _defaultCollectionView;
         public GoalManageViewModel(GoalEditManager model) : base(model)
         {
             BufferGoalItem = new GoalViewModel(GoalEdit.NewGoalEdit());
+            _defaultCollectionView = (ListCollectionView) CollectionViewSource.GetDefaultView(this.GoalList);
+
+            SortDescription sd = new SortDescription();
+            sd.PropertyName = "Model.Level";
+            sd.Direction = ListSortDirection.Descending;
+            SortDescription sd1 = new SortDescription() { PropertyName = "Model.EndTime", Direction = ListSortDirection.Ascending };
+            _defaultCollectionView.SortDescriptions.Add(sd);
+            _defaultCollectionView.SortDescriptions.Add(sd1);
+           
         }
 
         ObservableCollection<GoalViewModel> _goalList = new ObservableCollection<GoalViewModel>();
@@ -227,7 +239,7 @@ namespace Calen.Prp.WPF.ViewModel.TimeManage
         {
             this.IsBusy = true;
             this.BufferGoalItem= await this.BufferGoalItem.SaveAsync();
-            this.GoalList.Insert(0,this.BufferGoalItem);
+            this.GoalList.Add(this.BufferGoalItem);
             this.IsBusy = false;
             GoalViewModel newBuffer=new GoalViewModel(GoalEdit.NewGoalEdit());
             if (this.BufferGoalItem == this.CurrentEditingItem)
@@ -241,6 +253,7 @@ namespace Calen.Prp.WPF.ViewModel.TimeManage
                 this.IsEditModel = false;
                 this.IsGoalDetialPanelShowed = false;
             }
+            _defaultCollectionView.Refresh();
         }
 
         GoalViewModel _selectedGoal;
@@ -265,6 +278,7 @@ namespace Calen.Prp.WPF.ViewModel.TimeManage
             this.IsBusy = false;
             this.IsEditModel = false;
             this.IsGoalDetialPanelShowed = false;
+            _defaultCollectionView.Refresh();
         }
 
 

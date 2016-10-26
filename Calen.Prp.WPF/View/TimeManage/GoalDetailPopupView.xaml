@@ -10,7 +10,11 @@
              mc:Ignorable="d" 
             >
     <Grid Margin="12">
-        <StackPanel DataContext="{Binding BufferGoalItem}" Orientation="Vertical" TextElement.FontSize="{DynamicResource FontSize_Normal}" TextElement.Foreground="{DynamicResource Foreground_TitleKey}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel DataContext="{Binding BufferGoalItem}" Orientation="Vertical" TextElement.FontSize="{DynamicResource FontSize_Normal}" TextElement.Foreground="{DynamicResource Foreground_TitleKey}" >
             <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
                 <TextBlock Text="设立时间：" VerticalAlignment="Center"/>
                 <DatePicker Width="200" FontSize="{DynamicResource FontSize_Normal}" SelectedDate="{Binding Model.StartTime}"/>
@@ -20,18 +24,19 @@
                 <DatePicker Width="200" FontSize="{DynamicResource FontSize_Normal}" SelectedDate="{Binding Model.EndTime}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,8">
-                <TextBlock Text="等级：" VerticalAlignment="Center"/>
-                
+                <TextBlock Text="重要级别：" VerticalAlignment="Center"/>
+                <local:StarLevelIndicator Height="16" Margin="4,0" CurrentLevel="{Binding Model.Level,Mode=TwoWay}"/>
             </StackPanel>
             <StackPanel Margin="0,8">
                 <TextBlock Text="备注：" VerticalAlignment="Center"/>
-                <TextBox  Margin="0,8" TextWrapping="Wrap" AcceptsReturn="True" VerticalAlignment="Center" Height="48" FontSize="{DynamicResource FontSize_Normal}" Foreground="{DynamicResource Foreground_NormalKey}"
+                <TextBox  Margin="0,8" TextWrapping="Wrap" AcceptsReturn="True" VerticalAlignment="Center" Height="57" FontSize="{DynamicResource FontSize_Normal}" Foreground="{DynamicResource Foreground_NormalKey}"
                           Text="{Binding Model.Description}"/>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button Style="{StaticResource ButtonStyle_AccentedSquare}"  FontSize="{DynamicResource FontSize_Small}" BorderThickness="0" Padding="12,4" >确定</Button>
-               
-            </StackPanel>
+
+        </StackPanel>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Style="{StaticResource ButtonStyle_AccentedSquare}"  FontSize="{DynamicResource FontSize_Small}" BorderThickness="0" Padding="12,4" Command="{Binding Path=AddGoalCommand}" Click="Button_Click">确定</Button>
+
         </StackPanel>
     </Grid>
 </UserControl>

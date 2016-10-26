@@ -24,5 +24,14 @@ namespace Calen.Prp.WPF.View
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            HdtPopup popup=this.Parent as HdtPopup;
+            if(popup!=null)
+            {
+                popup.IsOpen = false;
+            }
+        }
     }
 }
