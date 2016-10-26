@@ -19,6 +19,7 @@
     Title="{Binding Title}"
     DataContext="{Binding Main, Source={StaticResource Locator}}"
     WindowStartupLocation="CenterScreen"
+    WindowState="Maximized"
     Height="600"
     Width="1000">
     <MahApps:MetroWindow.TitleTemplate>
