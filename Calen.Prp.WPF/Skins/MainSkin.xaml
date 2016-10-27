@@ -16,8 +16,8 @@
         <!--自定义控件外观-->
         <ResourceDictionary Source="pack://application:,,,/Calen.Prp.WPF;component/Skins/TabablzControlSkin.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Calen.Prp.WPF;component/Skins/ControlStyles.xaml" />
-        <!--控件内容模版-->
-        <ResourceDictionary Source="pack://application:,,,/Calen.Prp.WPF;component/Skins/PageContentTemplates.xaml"/>
+        <!--DataTemplates-->
+        <ResourceDictionary Source="pack://application:,,,/Calen.Prp.WPF;component/Skins/DataTemplates.xaml"/>
     </ResourceDictionary.MergedDictionaries>
     <sys:Double x:Key="FontSize_Large">15.0</sys:Double>
     <sys:Double x:Key="FontSize_Normal">14.0</sys:Double>

@@ -65,7 +65,10 @@ namespace Calen.Prp.Core.TimeManage
         public bool IsAchieved
         {
             get { return GetProperty(IsAchievedProperty); }
-            set { SetProperty(IsAchievedProperty, value); }
+            set
+            {
+                SetProperty(IsAchievedProperty, value);
+            }
         }
 
         public static GoalEdit NewGoalEdit()

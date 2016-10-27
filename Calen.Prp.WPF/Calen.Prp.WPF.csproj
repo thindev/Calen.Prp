@@ -109,6 +109,9 @@
     <Compile Include="View\StarLevelIndenticator.xaml.cs">
       <DependentUpon>StarLevelIndenticator.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Templates\GoalListItemTemplate.xaml.cs">
+      <DependentUpon>GoalListItemTemplate.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\TimeManage\DiaryManageView.xaml.cs">
       <DependentUpon>DiaryManageView.xaml</DependentUpon>
     </Compile>
@@ -169,11 +172,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Skins\ControlTemplates.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Skins\MainSkin.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Skins\PageContentTemplates.xaml">
+    <Page Include="Skins\DataTemplates.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -186,6 +193,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\StarLevelIndenticator.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Templates\GoalListItemTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

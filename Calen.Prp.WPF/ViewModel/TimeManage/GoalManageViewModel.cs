@@ -22,14 +22,15 @@ namespace Calen.Prp.WPF.ViewModel.TimeManage
         {
             BufferGoalItem = new GoalViewModel(GoalEdit.NewGoalEdit());
             _defaultCollectionView = (ListCollectionView) CollectionViewSource.GetDefaultView(this.GoalList);
-
             SortDescription sd = new SortDescription();
             sd.PropertyName = "Model.Level";
             sd.Direction = ListSortDirection.Descending;
             SortDescription sd1 = new SortDescription() { PropertyName = "Model.EndTime", Direction = ListSortDirection.Ascending };
+            SortDescription sd2 = new SortDescription() { PropertyName = "Model.IsAchieved", Direction = ListSortDirection.Ascending };
+            _defaultCollectionView.SortDescriptions.Add(sd2);
             _defaultCollectionView.SortDescriptions.Add(sd);
             _defaultCollectionView.SortDescriptions.Add(sd1);
-           
+            _defaultCollectionView.GroupDescriptions.Add(new PropertyGroupDescription("Model.IsAchieved"));
         }
 
         ObservableCollection<GoalViewModel> _goalList = new ObservableCollection<GoalViewModel>();
@@ -53,14 +54,16 @@ namespace Calen.Prp.WPF.ViewModel.TimeManage
             {
                 if(_showSelectedItemDetailCommand==null)
                 {
-                    _showSelectedItemDetailCommand = new RelayCommand(ShowDetailAction);
+                    _showSelectedItemDetailCommand = new RelayCommand<GoalViewModel>(ShowDetailAction);
                 }
                 return _showSelectedItemDetailCommand;
             }
         }
 
-        private void ShowDetailAction()
+        private void ShowDetailAction(GoalViewModel goal)
         {
+            if (goal != null)
+                this.CurrentEditingItem = goal;
             this.IsEditModel = true;
             this.IsGoalDetialPanelShowed = true;
         }
@@ -253,7 +256,6 @@ namespace Calen.Prp.WPF.ViewModel.TimeManage
                 this.IsEditModel = false;
                 this.IsGoalDetialPanelShowed = false;
             }
-            _defaultCollectionView.Refresh();
         }
 
         GoalViewModel _selectedGoal;
@@ -274,11 +276,12 @@ namespace Calen.Prp.WPF.ViewModel.TimeManage
         private async void SubmitGoalEditingAsync()
         {
             this.IsBusy = true;
+            _defaultCollectionView.EditItem(this.CurrentEditingItem);
             await this.CurrentEditingItem.SaveAsync();
             this.IsBusy = false;
             this.IsEditModel = false;
             this.IsGoalDetialPanelShowed = false;
-            _defaultCollectionView.Refresh();
+            _defaultCollectionView.CommitEdit();
         }
 
 

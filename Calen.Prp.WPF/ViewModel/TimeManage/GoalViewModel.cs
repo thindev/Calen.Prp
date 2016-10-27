@@ -7,19 +7,50 @@ using GalaSoft.MvvmLight;
 using Calen.Prp.Core.TimeManage;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
+using System.ComponentModel;
+using System.Collections.ObjectModel;
+using System.Windows.Data;
 
 namespace Calen.Prp.WPF.ViewModel.TimeManage
 {
     public class GoalViewModel : ViewModelBase<GoalEdit>
     {
-        static int i = 0;
         public GoalViewModel(GoalEdit model) : base(model)
         {
-            T = i++;
+           
         }
 
-        public int T { get; set; }
         ICommand _saveCommand;
+        ICommand _changeGoalStateCommand;
+        public ICommand ChangeGoalStateCommand
+        {
+            get
+            {
+                if(_changeGoalStateCommand==null)
+                {
+                    _changeGoalStateCommand = new RelayCommand<ObservableCollection<GoalViewModel>>(ChangeGoalStateAction);
+                }
+                return _changeGoalStateCommand;
+            }
+        }
+
+        private async void ChangeGoalStateAction(ObservableCollection<GoalViewModel> collection)
+        {
+            this.Model.IsAchieved = !this.Model.IsAchieved;
+            ListCollectionView view =(ListCollectionView) CollectionViewSource.GetDefaultView(collection);
+            if(view!=null)
+            {
+                view.EditItem(this);
+                await this.SaveAsync();
+                view.CommitEdit();
+            }
+            else
+            {
+                await this.SaveAsync();
+            }
+
+        }
+
         public ICommand SaveCommand
         {
             get

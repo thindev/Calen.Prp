@@ -86,16 +86,16 @@
                                                         <ColumnDefinition Width="auto"/>
                                                         <ColumnDefinition Width="auto"/>
                                                     </Grid.ColumnDefinitions>
-                                                    <Border BorderBrush="{DynamicResource PrimaryDarkColorKey}" BorderThickness="1" CornerRadius="2" Height="16" Width="16" Margin="0,0,10,0" >
-                                                        <ToggleButton Style="{DynamicResource ToggleButtonStyle_GeometryContent}" >
-
-                                                        </ToggleButton>
+                                                    <Border BorderBrush="{DynamicResource PrimaryDarkColorKey}" BorderThickness="1" CornerRadius="2" Height="17" Width="17" Margin="0,0,10,0" >
+                                                        <Button Name="tgb_isAchieved" Style="{DynamicResource ButtonStyle_GeometryContent}" Command="{Binding ChangeGoalStateCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ListBox},Path=ItemsSource}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                                           
+                                                        </Button>
                                                     </Border>
                                                         
                                                     <TextBlock Grid.Column="1"  Text="{Binding Model.Content}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" ToolTip="{Binding Model.Content}" HorizontalAlignment="Left"/>
                                                     <local:StarLevelIndicator Grid.Column="2" Margin="14,13" CurrentLevel="{Binding Model.Level,Mode=TwoWay}" IsHitTestVisible="False"/>
                                                     <TextBlock Grid.Column="3"  Text="{Binding Model.EndTime, StringFormat=yyyy-MM-dd}" VerticalAlignment="Center" FontSize="{DynamicResource FontSize_Small}" Foreground="{DynamicResource Foreground_LightKey}"/>
-                                                    <Button Grid.Column="4" Style="{DynamicResource ButtonStyle_GeometryContent}" Content="{DynamicResource Geometry_EditButtonIcon}" Padding="10" Margin="4,4,-8,4" Background="Transparent" Command="{Binding RelativeSource={RelativeSource AncestorType=ListBox},Path=Tag.ShowSelectedItemDetailCommand}"></Button>
+                                                    <Button Grid.Column="4" Style="{DynamicResource ButtonStyle_GeometryContent}" Content="{DynamicResource Geometry_EditButtonIcon}" Padding="10" Margin="4,4,-8,4" Background="Transparent" Command="{Binding RelativeSource={RelativeSource AncestorType=ListBox},Path=Tag.ShowSelectedItemDetailCommand}" CommandParameter="{Binding}"></Button>
                                                 </Grid>
                                             </Border>
                                             <ControlTemplate.Triggers>
@@ -109,14 +109,25 @@
                                                 <Trigger Property="IsMouseOver" Value="true">
                                                     <Setter TargetName="border" Property="Background" Value="{DynamicResource PrimaryMedianColorKey}"/>
                                                 </Trigger>
+                                                <DataTrigger Binding="{Binding Model.IsAchieved}" Value="true">
+                                                    <Setter TargetName="tgb_isAchieved" Property="Content">
+                                                        <Setter.Value>
+                                                            <PathGeometry>
+                                                                M40.267,14.628L20.974,33.921l-9.293-9.293c-0.391-0.391-1.023-0.391-1.414,0s-0.391,1.023,0,1.414l10,10
+	c0.195,0.195,0.451,0.293,0.707,0.293s0.512-0.098,0.707-0.293l20-20c0.391-0.391,0.391-1.023,0-1.414S40.657,14.237,40.267,14.628z
+                                                            </PathGeometry>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                    <Setter TargetName="tgb_isAchieved" Property="Margin" Value="0,-6,-6,0"/>
+                                                    <Setter TargetName="border" Property="Opacity" Value="0.4"/>
+                                                </DataTrigger>
                                             </ControlTemplate.Triggers>
-
                                         </ControlTemplate>
                                     </Setter.Value>
                                 </Setter>
                             </Style>
                         </ListBox.ItemContainerStyle>
-                        <!--<ListBox.ItemsPanel>
+                        <ListBox.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <VirtualizingStackPanel IsItemsHost="True">
                                     <i:Interaction.Behaviors>
@@ -125,7 +136,44 @@
                                     </i:Interaction.Behaviors>
                                 </VirtualizingStackPanel>
                             </ItemsPanelTemplate>
-                        </ListBox.ItemsPanel>-->
+                        </ListBox.ItemsPanel>
+                        <ListBox.GroupStyle>
+                            <GroupStyle>
+                                <GroupStyle.ContainerStyle>
+                                    <Style TargetType="{x:Type GroupItem}">
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type GroupItem}">
+                                                    <ItemsPresenter />
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Name}"  Value="true">
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="{x:Type GroupItem}">
+                                                            <Expander IsExpanded="True" Style="{DynamicResource ExpanderStyle_CheckedItemsContainer}">
+                                                                <Expander.Header>
+                                                                    <StackPanel Orientation="Horizontal"  Margin="0,0,10,0">
+                                                                        <TextBlock Text="显示已完成的目标"  />
+                                                                        <TextBlock Text="{Binding Path=ItemCount, StringFormat=（{0}）}"/>
+                                                                    </StackPanel>
+                                                                </Expander.Header>
+                                                                <ItemsPresenter />
+                                                            </Expander>
+
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </GroupStyle.ContainerStyle>
+                              
+                            </GroupStyle>
+                        </ListBox.GroupStyle>
+
                     </ListBox>
                 </Border>
             </Grid>
