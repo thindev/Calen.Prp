@@ -17,7 +17,7 @@
                 <RadioButton IsChecked="{Binding IsGoalMenuSelected}" GroupName="time_manage" Style="{DynamicResource NavigationMenuItemStyle}" ToolTip="{Binding ElementName=tbl2,Path=Text}">
                     <StackPanel Orientation="Horizontal" >
                         <Path Margin="14" Fill="{Binding RelativeSource={RelativeSource AncestorType=RadioButton},Path=Foreground}" Stretch="Uniform" Height="16" Width="16" Data="{DynamicResource Geometry_TargetIcon}"/>
-                        <TextBlock Name="tbl2" Text="目标管理" VerticalAlignment="Center" Margin="2,0" FontSize="{DynamicResource FontSize_Normal}"/>
+                        <TextBlock Name="tbl2" Text="目标清单" VerticalAlignment="Center" Margin="2,0" FontSize="{DynamicResource FontSize_Normal}"/>
                     </StackPanel>
                 </RadioButton>
                 
@@ -28,12 +28,12 @@
                         <TextBlock Name="tbl4" Text="待办事项" VerticalAlignment="Center" Margin="2,0" FontSize="{DynamicResource FontSize_Normal}"/>
                     </StackPanel>
                 </RadioButton>
-                <RadioButton IsChecked="{Binding IsCalendarMenuSelected}" GroupName="time_manage" Style="{DynamicResource NavigationMenuItemStyle}" ToolTip="{Binding ElementName=tbl1,Path=Text}">
+                <!--<RadioButton IsChecked="{Binding IsCalendarMenuSelected}" GroupName="time_manage" Style="{DynamicResource NavigationMenuItemStyle}" ToolTip="{Binding ElementName=tbl1,Path=Text}">
                     <StackPanel Orientation="Horizontal" >
                         <Path Margin="14" Fill="{Binding RelativeSource={RelativeSource AncestorType=RadioButton},Path=Foreground}" Stretch="Uniform" Height="16" Width="16" Data="{DynamicResource Geometry_CalendarIcon }"/>
                         <TextBlock Name="tbl1" Text="我的日历" VerticalAlignment="Center" Margin="2,0" FontSize="{DynamicResource FontSize_Normal}"/>
                     </StackPanel>
-                </RadioButton>
+                </RadioButton>-->
                 <RadioButton GroupName="time_manage" IsChecked="{Binding IsDiaryMenuSelected}" Style="{DynamicResource NavigationMenuItemStyle}" ToolTip="{Binding ElementName=tbl5,Path=Text}">
                     <StackPanel Orientation="Horizontal" >
                         <Path Margin="14" Fill="{Binding RelativeSource={RelativeSource AncestorType=RadioButton},Path=Foreground}" Stretch="Uniform" Height="16" Width="16" Data="{DynamicResource Geomety_DiaryIcon}"/>

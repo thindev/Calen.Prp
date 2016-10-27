@@ -48,6 +48,35 @@ namespace Calen.Prp.WPF.ViewModel.TimeManage
         ICommand _addGoalCommand;
         ICommand _submitEditCommand;
         ICommand _showSelectedItemDetailCommand;
+        ICommand _deleteSelectedItemCommand;
+        public ICommand DeleteSelectedItemCommand
+        {
+            get
+            {
+                if(_deleteSelectedItemCommand==null)
+                {
+                    _deleteSelectedItemCommand = new RelayCommand<GoalViewModel>(DeleteSelectedItemAction);
+                }
+                return _deleteSelectedItemCommand;
+            }
+        }
+
+        private async void DeleteSelectedItemAction(GoalViewModel obj)
+        {
+            if(obj==null)
+            {
+                obj = this.CurrentEditingItem;
+                if (obj == null)
+                    return;
+            }
+            this.IsBusy = true;
+            obj.Model.Delete();
+            await obj.SaveAsync();
+            this.IsBusy = false;
+            this.GoalList.Remove(obj);
+
+        }
+
         public ICommand ShowSelectedItemDetailCommand
         {
             get

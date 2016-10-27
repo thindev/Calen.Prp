@@ -15,6 +15,7 @@
             <RowDefinition Height="42"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
+      
         <Grid Background="{DynamicResource PrimaryLightColorKey}">
             <ToggleButton Grid.Row="1" Style="{DynamicResource ToggleButtonStyle_GeometryContent}"  IsChecked="{Binding IsGoalDetialPanelShowed}" Padding="4" Height="28" Foreground="{DynamicResource Foreground_TitleKey}">
                 <ToggleButton.Content>

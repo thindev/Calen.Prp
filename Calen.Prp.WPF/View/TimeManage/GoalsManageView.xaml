@@ -74,10 +74,15 @@
                                 <Setter Property="Template" >
                                     <Setter.Value>
                                         <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                                            <Border x:Name="border" Height="42" BorderThickness="0" Padding="14,0" Background="{DynamicResource PrimaryLightColorKey}" TextElement.Foreground="{DynamicResource Foreground_NormalKey}" TextElement.FontSize="{DynamicResource FontSize_Large}" >
+                                            <Border x:Name="border" Height="48" BorderThickness="0" Padding="14,0" Background="{DynamicResource PrimaryLightColorKey}" TextElement.Foreground="{DynamicResource Foreground_NormalKey}" TextElement.FontSize="{DynamicResource FontSize_Large}" Tag="{Binding RelativeSource={RelativeSource AncestorType=ListBox},Path=Tag}">
                                                 <Border.InputBindings>
                                                     <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding RelativeSource={RelativeSource AncestorType=ListBox},Path=Tag.ShowSelectedItemDetailCommand}"/>
                                                 </Border.InputBindings>
+                                                <Border.ContextMenu>
+                                                    <ContextMenu PlacementTarget="{Binding ElementName=border}">
+                                                        <MenuItem Header="删除" Command="{Binding RelativeSource={RelativeSource AncestorType=ContextMenu},Path=PlacementTarget.Tag.DeleteSelectedItemCommand}" CommandParameter="{Binding}"/>
+                                                    </ContextMenu>
+                                                </Border.ContextMenu>
                                                 <Grid HorizontalAlignment="Stretch">
                                                     <Grid.ColumnDefinitions>
                                                         <ColumnDefinition Width="auto"/>
@@ -86,16 +91,16 @@
                                                         <ColumnDefinition Width="auto"/>
                                                         <ColumnDefinition Width="auto"/>
                                                     </Grid.ColumnDefinitions>
-                                                    <Border BorderBrush="{DynamicResource PrimaryDarkColorKey}" BorderThickness="1" CornerRadius="2" Height="17" Width="17" Margin="0,0,10,0" >
+                                                    <Border BorderBrush="{DynamicResource Foreground_LightKey}" BorderThickness="1" CornerRadius="2" Height="17" Width="17" Margin="0,0,10,0" >
                                                         <Button Name="tgb_isAchieved" Style="{DynamicResource ButtonStyle_GeometryContent}" Command="{Binding ChangeGoalStateCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ListBox},Path=ItemsSource}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                                                            
                                                         </Button>
                                                     </Border>
                                                         
                                                     <TextBlock Grid.Column="1"  Text="{Binding Model.Content}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" ToolTip="{Binding Model.Content}" HorizontalAlignment="Left"/>
-                                                    <local:StarLevelIndicator Grid.Column="2" Margin="14,13" CurrentLevel="{Binding Model.Level,Mode=TwoWay}" IsHitTestVisible="False"/>
+                                                    <local:StarLevelIndicator Grid.Column="2" Margin="14,16" CurrentLevel="{Binding Model.Level,Mode=TwoWay}" IsHitTestVisible="False"/>
                                                     <TextBlock Grid.Column="3"  Text="{Binding Model.EndTime, StringFormat=yyyy-MM-dd}" VerticalAlignment="Center" FontSize="{DynamicResource FontSize_Small}" Foreground="{DynamicResource Foreground_LightKey}"/>
-                                                    <Button Grid.Column="4" Style="{DynamicResource ButtonStyle_GeometryContent}" Content="{DynamicResource Geometry_EditButtonIcon}" Padding="10" Margin="4,4,-8,4" Background="Transparent" Command="{Binding RelativeSource={RelativeSource AncestorType=ListBox},Path=Tag.ShowSelectedItemDetailCommand}" CommandParameter="{Binding}"></Button>
+                                                    <Button Grid.Column="4" Style="{DynamicResource ButtonStyle_GeometryContent}" Content="{DynamicResource Geometry_EditButtonIcon}" Padding="12" Margin="4,4,-8,4" Background="Transparent" Command="{Binding RelativeSource={RelativeSource AncestorType=ListBox},Path=Tag.ShowSelectedItemDetailCommand}" CommandParameter="{Binding}"></Button>
                                                 </Grid>
                                             </Border>
                                             <ControlTemplate.Triggers>
