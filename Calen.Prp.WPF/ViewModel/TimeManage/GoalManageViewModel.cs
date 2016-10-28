@@ -12,16 +12,72 @@ using GalaSoft.MvvmLight.CommandWpf;
 using System.Windows;
 using System.Windows.Data;
 using System.ComponentModel;
+using System.Collections.Specialized;
 
 namespace Calen.Prp.WPF.ViewModel.TimeManage
 {
-    public class GoalManageViewModel : ViewModelBase<GoalEditManager>
+    public class GoalManageViewModel : ViewModelBase<GoalDynamicList>
     {
         ListCollectionView _defaultCollectionView;
-        public GoalManageViewModel(GoalEditManager model) : base(model)
+        public GoalManageViewModel(GoalDynamicList model) : base(model)
+        {
+            model.CollectionChanged += Model_CollectionChanged;
+            this.GoalList.CollectionChanged += GoalList_CollectionChanged;
+            this.InitData();
+            //设置排序、分组描述
+            this.SetListDescription();
+        }
+
+        private void GoalList_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+           // throw new NotImplementedException();
+        }
+
+        private void Model_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            Application.Current?.Dispatcher.Invoke(new Action(() => {
+                switch (e.Action)
+                {
+                    case NotifyCollectionChangedAction.Add:
+                        {
+                            List<GoalEdit> goals = this.GoalList.Select(x => x.Model).ToList();
+                            foreach (GoalEdit g in e.NewItems)
+                            {
+                                if (!goals.Contains(g))
+                                {
+                                    GoalViewModel vm = new GoalViewModel(g);
+                                    this.GoalList.Add(vm);
+                                }
+                            }
+                            break;
+                        }
+                    case NotifyCollectionChangedAction.Remove:
+                        {
+                            List<GoalEdit> goals = this.GoalList.Select(x => x.Model).ToList();
+                            foreach (GoalEdit g in e.OldItems)
+                            {
+                                if (goals.Contains(g))
+                                {
+                                   GoalViewModel vm= this.GoalList.First(x=>x.Model==g);
+                                    this.GoalList.Remove(vm);
+                                }
+                            }
+                            break;
+                        }
+                    
+                }
+            }));
+        }
+       
+
+        void InitData()
         {
             BufferGoalItem = new GoalViewModel(GoalEdit.NewGoalEdit());
-            _defaultCollectionView = (ListCollectionView) CollectionViewSource.GetDefaultView(this.GoalList);
+        }
+
+        void SetListDescription()
+        {
+            _defaultCollectionView = (ListCollectionView)CollectionViewSource.GetDefaultView(this.GoalList);
             SortDescription sd = new SortDescription();
             sd.PropertyName = "Model.Level";
             sd.Direction = ListSortDirection.Descending;

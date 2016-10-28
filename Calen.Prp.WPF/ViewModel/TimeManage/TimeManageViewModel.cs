@@ -22,7 +22,7 @@ namespace Calen.Prp.WPF.ViewModel.TimeManage
 
         public TimeManageViewModel()
         {
-            _goalManager = new GoalManageViewModel(new Core.TimeManage.GoalEditManager());
+            _goalManager = new GoalManageViewModel(new Core.TimeManage.GoalDynamicList());
         }
 
         public bool IsGoalMenuSelected

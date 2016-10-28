@@ -12,6 +12,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)CommentEdit.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CommentEditList.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TimeManage\GoalEdit.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)TimeManage\GoalEditManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TimeManage\GoalDynamicList.cs" />
   </ItemGroup>
 </Project>

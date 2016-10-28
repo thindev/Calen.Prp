@@ -8,7 +8,7 @@ using System.Collections.ObjectModel;
 namespace Calen.Prp.Core.TimeManage
 {
     [Serializable]
-    public class GoalEditManager
+    public class GoalDynamicList:DynamicListBase<GoalEdit>
     {
        
     }
