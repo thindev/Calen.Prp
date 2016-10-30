@@ -24,7 +24,7 @@
     Width="1000">
     <MahApps:MetroWindow.TitleTemplate>
         <DataTemplate>
-            <TextBlock Text="{Binding }" Margin="12,0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="{DynamicResource PrimaryLightColorKey}" FontSize="{DynamicResource FontSize_Normal}" Opacity="0.9"/>
+            <TextBlock Text="{Binding }" Margin="12,0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="{DynamicResource PrimaryLightColorKey}" Opacity="0.9"/>
         </DataTemplate>
     </MahApps:MetroWindow.TitleTemplate>
     <Window.Resources>

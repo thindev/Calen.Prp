@@ -13,8 +13,8 @@
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Border  Background="{DynamicResource PrimaryLightColorKey}"  BorderBrush="{DynamicResource PrimaryMedianColorKey}" BorderThickness="0,0,1,0">
-            <local:TimeManageLeftSidePanel/>
+        <Border  Background="{DynamicResource PrimaryLightColorKey}"  BorderBrush="{DynamicResource PrimaryColorKey}" BorderThickness="0,0,1,0">
+            <local:TimeManageLeftSidePanel ExpandedWidth="200"/>
         </Border>
         <Border Grid.Column="1" Grid.Row="1" Background="White">
             <local:TimeManageContentPanel/>

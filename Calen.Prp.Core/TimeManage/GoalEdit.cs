@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Csla;
+using SQLite.Net;
+using Calen.Prp.Dal;
+using Calen.Prp.Dal.Tables;
 
 namespace Calen.Prp.Core.TimeManage
 {
@@ -13,6 +16,9 @@ namespace Calen.Prp.Core.TimeManage
         public static readonly PropertyInfo<string> ParentGoalIdProperty = RegisterProperty<string>(p => p.ParentGoalId);
         public static readonly PropertyInfo<string> ContentProperty = RegisterProperty<string>(p => p.Content);
         public static readonly PropertyInfo<string> DescriptionProperty = RegisterProperty<string>(p=>p.Description);
+
+        
+
         public static readonly PropertyInfo<DateTime> StartTimeProperty = RegisterProperty<DateTime>(p => p.StartTime);
         public static readonly PropertyInfo<DateTime> EndTimeProperty = RegisterProperty<DateTime>(p => p.EndTime);
         public static readonly PropertyInfo<int> LevelProperty = RegisterProperty<int>(p => p.Level);
@@ -71,7 +77,7 @@ namespace Calen.Prp.Core.TimeManage
             }
         }
 
-        public static GoalEdit NewGoalEdit()
+        public static GoalEdit New()
         {
             GoalEdit goal = DataPortal.Create<GoalEdit>();
             goal.Id = Guid.NewGuid().ToString();
@@ -80,8 +86,62 @@ namespace Calen.Prp.Core.TimeManage
             goal.Level = 1;
             return goal;
         }
+       
+        internal static GoalEdit FromDbItem(Goal item)
+        {
+            GoalEdit ge = DataPortal.Fetch<GoalEdit>();
+            ge.Id = item.Id;
+            ge.Content = item.Content;
+            ge.Description = item.Description;
+            ge.EndTime = item.EndTime;
+            ge.IsAchieved = item.IsAchieved;
+            ge.Level = item.Level;
+            ge.ParentGoalId = item.ParentGoalId;
+            ge.StartTime = item.StartTime;
+            ge.MarkClean();
+            return ge;
+        }
+        protected void DataPortal_Fetch()
+        {
 
-      
+        }
+
+
+
+        protected override void DataPortal_Insert()
+        {
+            Goal item = this.ToDbItem();
+            item.CreateTime = DateTime.Now;
+            DataAccessor.Instance.DataBase.Insert(item);
+        }
+        protected override void DataPortal_Update()
+        {
+            Goal item = this.ToDbItem();
+            item.LastUpdateTime = DateTime.Now;
+            DataAccessor.Instance.DataBase.Update(item);
+        }
+        protected override void DataPortal_DeleteSelf()
+        {
+            Goal item = this.ToDbItem();
+            DataAccessor.Instance.DataBase.Delete(item);
+        }
+
+
+        protected Goal ToDbItem()
+        {
+            Goal item = new Goal();
+            item.Content = this.Content;
+            item.Description = this.Description;
+            item.EndTime = this.EndTime;
+            item.Id = this.Id;
+            item.IsAchieved = this.IsAchieved;
+            item.Level = this.Level;
+            item.ParentGoalId = this.ParentGoalId;
+            item.StartTime = this.StartTime;
+            return item;
+        }
+
+
 
     }
 }

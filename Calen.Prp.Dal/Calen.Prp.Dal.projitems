@@ -9,7 +9,10 @@
     <Import_RootNamespace>Calen.Prp.Dal</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)DataAccessor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Tables\Activity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Tables\Goal.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Tables\TableBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Tables\TimeConsuming.cs" />
   </ItemGroup>
 </Project>

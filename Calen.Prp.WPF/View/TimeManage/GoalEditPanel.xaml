@@ -7,7 +7,7 @@
              xmlns:local="clr-namespace:Calen.Prp.WPF.View"
              mc:Ignorable="d" 
              BorderThickness="1,0,0,0"
-              BorderBrush="{DynamicResource PrimaryMedianColorKey}"
+              BorderBrush="{DynamicResource PrimaryColorKey}"
              Background="{DynamicResource BlankColorKey}"
              ScrollViewer.VerticalScrollBarVisibility="Auto">
     <Grid Width="300">

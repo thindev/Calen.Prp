@@ -20,6 +20,16 @@ namespace Calen.Prp.WPF.View
     /// </summary>
     public partial class TimeManageLeftSidePanel : UserControl
     {
+        double _expandedWidth=160;
+            public double ExpandedWidth
+        {
+            get { return _expandedWidth; }
+            set
+            {
+                _expandedWidth = value;
+                this.ExpandMenuPanel();
+            }
+        }
         public TimeManageLeftSidePanel()
         {
             InitializeComponent();
@@ -39,7 +49,7 @@ namespace Calen.Prp.WPF.View
         {
             if (this.tagsToggleButton != null)
                 this.tagsToggleButton.Visibility = Visibility.Collapsed;
-            this.rightColumn.Width = new GridLength(160);
+            this.rightColumn.Width = new GridLength(this.ExpandedWidth);
             if(this.activitiesContainer!=null)
             this.activitiesContainer.Visibility = Visibility.Visible;
         }

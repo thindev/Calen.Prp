@@ -16,13 +16,14 @@ namespace Calen.Prp.WPF.ViewModel.TimeManage
         bool _isToDoListMenuSelected;
         bool _isDiaryMenuSelected;
         string _currentTitle;
-        ObservableCollection<ActivityViewModel> _activities = new ObservableCollection<ActivityViewModel>();
+       
         ActivityViewModel _currentActivity;
 
 
         public TimeManageViewModel()
         {
             _goalManager = new GoalManageViewModel(new Core.TimeManage.GoalDynamicList());
+            _activityManager = new ActivityManageViewModel(new Core.TimeManage.ActivityDynamicList());
         }
 
         public bool IsGoalMenuSelected
@@ -106,13 +107,7 @@ namespace Calen.Prp.WPF.ViewModel.TimeManage
             }
         }
 
-        public ObservableCollection<ActivityViewModel> Activities
-        {
-            get
-            {
-                return _activities;
-            }
-        }
+       
 
         public ActivityViewModel CurrentActivity
         {
@@ -127,7 +122,7 @@ namespace Calen.Prp.WPF.ViewModel.TimeManage
                 {
                     if (value != null)
                     {
-                        this.CurrentTitle = "["+value.Name+"]的待办事项";
+                        this.CurrentTitle = "["+value.Model.Name+"]的待办事项";
                     }
                     _currentActivity = value;
                     RaisePropertyChanged(()=>CurrentActivity);
@@ -157,6 +152,11 @@ namespace Calen.Prp.WPF.ViewModel.TimeManage
         {
             get { return _goalManager; }
             //set { Set(() => GoalManager, ref _goalManager, value); }
+        }
+        ActivityManageViewModel _activityManager;
+        public ActivityManageViewModel ActivityManager
+        {
+            get { return _activityManager; }
         }
     }
 }

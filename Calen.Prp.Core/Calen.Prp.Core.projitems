@@ -11,7 +11,9 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)CommentEdit.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CommentEditList.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)TimeManage\GoalEdit.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TimeManage\ActivityDynamicList.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TimeManage\ActivityEdit.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TimeManage\GoalDynamicList.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TimeManage\GoalEdit.cs" />
   </ItemGroup>
 </Project>

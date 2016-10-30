@@ -21,11 +21,33 @@ namespace Calen.Prp.WPF.ViewModel.TimeManage
         ListCollectionView _defaultCollectionView;
         public GoalManageViewModel(GoalDynamicList model) : base(model)
         {
-            model.CollectionChanged += Model_CollectionChanged;
-            this.GoalList.CollectionChanged += GoalList_CollectionChanged;
-            this.InitData();
+          //  model.CollectionChanged += Model_CollectionChanged;
+          //  this.GoalList.CollectionChanged += GoalList_CollectionChanged;
+            this.RefreshListAsync();
             //设置排序、分组描述
             this.SetListDescription();
+        }
+
+        private async void RefreshListAsync()
+        {
+            BufferGoalItem = new GoalViewModel(GoalEdit.New());
+            this.IsBusy = true;
+            GoalDynamicList list=null;
+            await Task.Run(() =>
+            {
+                 list= GoalDynamicList.Fetch();
+            }
+            );
+            if(list!=null)
+            {
+                foreach (GoalEdit g in list)
+                {
+                    GoalViewModel vm = new GoalViewModel(g);
+                    this.GoalList.Add(vm);
+                }
+            }
+            this.IsBusy = false;
+
         }
 
         private void GoalList_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
@@ -67,12 +89,6 @@ namespace Calen.Prp.WPF.ViewModel.TimeManage
                     
                 }
             }));
-        }
-       
-
-        void InitData()
-        {
-            BufferGoalItem = new GoalViewModel(GoalEdit.NewGoalEdit());
         }
 
         void SetListDescription()
@@ -329,7 +345,7 @@ namespace Calen.Prp.WPF.ViewModel.TimeManage
             this.BufferGoalItem= await this.BufferGoalItem.SaveAsync();
             this.GoalList.Add(this.BufferGoalItem);
             this.IsBusy = false;
-            GoalViewModel newBuffer=new GoalViewModel(GoalEdit.NewGoalEdit());
+            GoalViewModel newBuffer=new GoalViewModel(GoalEdit.New());
             if (this.BufferGoalItem == this.CurrentEditingItem)
             {
                 this.CurrentEditingItem = this.SelectedGoal;

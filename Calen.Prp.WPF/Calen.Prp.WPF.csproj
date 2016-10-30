@@ -98,6 +98,7 @@
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\PagesManagerViewModel.cs" />
     <Compile Include="ViewModel\PageViewModel.cs" />
+    <Compile Include="ViewModel\TimeManage\ActivityManageViewModel.cs" />
     <Compile Include="ViewModel\TimeManage\ActivityViewModel.cs" />
     <Compile Include="ViewModel\TimeManage\GoalManageViewModel.cs" />
     <Compile Include="ViewModel\TimeManage\GoalViewModel.cs" />
