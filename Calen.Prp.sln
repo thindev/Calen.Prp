@@ -19,6 +19,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calen.Prp.Dal.Windows", "Ca
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calen.Prp.WPF", "Calen.Prp.WPF\Calen.Prp.WPF.csproj", "{79810A77-721C-479A-BB13-1FD515C67496}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "References", "References", "{6BDDB9E8-1A1B-4D5D-85D7-731B8C8F3DBF}"
+	ProjectSection(SolutionItems) = preProject
+		References_Windows\SQLite3.dll = References_Windows\SQLite3.dll
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Calen.Prp.Core\Calen.Prp.Core.projitems*{378e6970-a86e-4e29-a833-2aa2acc28af1}*SharedItemsImports = 4
@@ -59,5 +64,6 @@ Global
 		{6A0CBD31-9DBE-4064-8F8D-FCFDAC312712} = {904ADEA9-2985-4943-A6DF-4AE1D901AEA1}
 		{2936D39D-D712-40DC-926D-9523B05173E2} = {CB6FDD47-2FA1-4BBA-B9DB-1669168EC61E}
 		{79810A77-721C-479A-BB13-1FD515C67496} = {CB6FDD47-2FA1-4BBA-B9DB-1669168EC61E}
+		{6BDDB9E8-1A1B-4D5D-85D7-731B8C8F3DBF} = {CB6FDD47-2FA1-4BBA-B9DB-1669168EC61E}
 	EndGlobalSection
 EndGlobal
