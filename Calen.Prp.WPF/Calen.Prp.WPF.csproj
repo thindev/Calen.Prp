@@ -89,11 +89,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AppContext.cs" />
     <Compile Include="Design\DesignDataService.cs" />
     <Compile Include="Model\DataItem.cs" />
     <Compile Include="Model\DataService.cs" />
     <Compile Include="Model\IDataService.cs" />
     <Compile Include="AppResourcesManager.cs" />
+    <Compile Include="ViewModel\IDialogHelper.cs" />
     <Compile Include="ViewModel\KnAndExManageViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\PagesManagerViewModel.cs" />
@@ -105,6 +107,10 @@
     <Compile Include="ViewModel\TimeManage\TimeManageViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="View\ContentDialogContainer.xaml.cs">
+      <DependentUpon>ContentDialogContainer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DialogHelper.cs" />
     <Compile Include="View\HdtPopup.cs" />
     <Compile Include="View\SlidePanel.cs" />
     <Compile Include="View\StarLevelIndenticator.xaml.cs">
@@ -112,6 +118,9 @@
     </Compile>
     <Compile Include="View\Templates\GoalListItemTemplate.xaml.cs">
       <DependentUpon>GoalListItemTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TimeManage\ActivityEditPanel.xaml.cs">
+      <DependentUpon>ActivityEditPanel.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\TimeManage\DiaryManageView.xaml.cs">
       <DependentUpon>DiaryManageView.xaml</DependentUpon>
@@ -177,6 +186,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Skins\DialogContentTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Skins\MainSkin.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -193,11 +206,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="View\ContentDialogContainer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\StarLevelIndenticator.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Templates\GoalListItemTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TimeManage\ActivityEditPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -280,6 +301,9 @@
     <Analyzer Include="..\packages\CSLA-Core.4.6.500\analyzers\c#\Csla.Analyzers.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy /E/Y/A  $(SolutionDir)References_Windows $(ProjectDir)$(OutDir)</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

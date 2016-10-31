@@ -10,8 +10,6 @@ namespace Calen.Prp.WPF.ViewModel.TimeManage
 {
     public class ActivityViewModel:ViewModelBase<ActivityEdit>
     {
-        string _id;
-        string _name;
 
         public ActivityViewModel(ActivityEdit model) : base(model)
         {

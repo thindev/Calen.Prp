@@ -1,10 +1,12 @@
 ﻿using Calen.Prp.Core.TimeManage;
+using GalaSoft.MvvmLight.CommandWpf;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace Calen.Prp.WPF.ViewModel.TimeManage
 {
@@ -33,6 +35,16 @@ namespace Calen.Prp.WPF.ViewModel.TimeManage
                 ActivityViewModel vm = new ActivityViewModel(activity);
                 _activityList.Add(vm);
             }
+        }
+        ICommand _addActivityCommand;
+        public ICommand AddActivityCommand
+        {
+            get { return _addActivityCommand ?? (_addActivityCommand = new RelayCommand(AddActivityAction)); }
+        }
+
+        private void AddActivityAction()
+        {
+            AppContext.DialogHelper.ShowContentDialog(this,this);
         }
     }
 }

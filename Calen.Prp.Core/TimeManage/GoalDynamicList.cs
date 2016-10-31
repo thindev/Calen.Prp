@@ -7,7 +7,7 @@ using Csla;
 using Calen.Prp.Dal;
 using Calen.Prp.Dal.Tables;
 using SQLite.Net;
-
+using System.Linq;
 
 namespace Calen.Prp.Core.TimeManage
 {
@@ -20,7 +20,7 @@ namespace Calen.Prp.Core.TimeManage
         }
         protected override void DataPortal_Fetch(object criteria)
         {
-            IEnumerable<Goal> goals = DataAccessor.Instance.DataBase.Table<Goal>().Where(item => true);
+            List<Goal> goals = DataAccessor.Instance.DataBase.Table<Goal>().Where(item => true).ToList();
             foreach(var item in goals)
             {
                 GoalEdit ge = GoalEdit.FromDbItem(item);

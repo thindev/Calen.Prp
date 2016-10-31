@@ -13,4 +13,6 @@ namespace Calen.Prp.WPF
             DispatcherHelper.Initialize();
         }
     }
+
+
 }

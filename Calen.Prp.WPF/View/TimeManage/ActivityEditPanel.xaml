@@ -1,0 +1,53 @@
+﻿<UserControl x:Class="Calen.Prp.WPF.View.ActivityEditPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Calen.Prp.WPF.View"
+             xmlns:mahapps="http://metro.mahapps.com/winfx/xaml/controls"
+             mc:Ignorable="d" 
+            >
+    <Border Background="White"  CornerRadius="4">
+        <Grid Width="400">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="36"/>
+                <RowDefinition/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Border Background="{DynamicResource PrimaryLightColorKey}" CornerRadius="4,4,0,0" TextElement.FontSize="{DynamicResource FontSize_Normal}">
+                <Grid  >
+                    <TextBlock Text="活动信息" Margin="12,0" VerticalAlignment="Center" FontSize="{DynamicResource FontSize_Normal}" Foreground="{DynamicResource Foreground_TitleKey}" Background="{DynamicResource PrimaryLightColorKey}"/>
+                    <TextBlock Text="新增活动" Margin="12,0" VerticalAlignment="Center" FontSize="{DynamicResource FontSize_Normal}" Foreground="{DynamicResource Foreground_TitleKey}" Visibility="{Binding CurrentEditingItem.Model.IsNew,Converter={StaticResource BooleanToVisibilityConverter} }" Background="{DynamicResource PrimaryLightColorKey}"/>
+
+                </Grid>
+            </Border>
+            
+            <Grid Grid.Row="1" Margin="12">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Orientation="Vertical" TextElement.FontSize="{DynamicResource FontSize_Normal}" TextElement.Foreground="{DynamicResource Foreground_TitleKey}" DataContext="{Binding CurrentEditingItem}">
+
+                    <DockPanel Margin="0,0,0,8">
+                        <TextBox x:Name="txt_goalInput" Text="{Binding BufferGoalItem.Model.Content, UpdateSourceTrigger=PropertyChanged}" Style="{DynamicResource TextBoxStyle_Common}"  Background="{DynamicResource BlankColorKey}"   BorderBrush="{DynamicResource PrimaryMedianColorKey}" VerticalContentAlignment="Center"  Foreground="{DynamicResource Foreground_NormalKey}" mahapps:TextBoxHelper.Watermark="活动名称"  BorderThickness="1" FontSize="{DynamicResource FontSize_Normal}"
+								mahapps:TextBoxHelper.ClearTextButton="True" />
+                    </DockPanel>
+                    
+                    
+                    <StackPanel Margin="0,8,0,0" >
+                        <TextBlock Text="备注：" VerticalAlignment="Center"/>
+                        <TextBox Style="{DynamicResource TextBoxStyle_Common}" Margin="0,8,0,0" TextWrapping="Wrap" AcceptsReturn="True" VerticalAlignment="Center" Height="84" FontSize="{DynamicResource FontSize_Normal}" Foreground="{DynamicResource Foreground_NormalKey}" Text="{Binding Model.Description,UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+                </StackPanel>
+
+            </Grid>
+            <StackPanel Margin="12,0,12,12" Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Visibility="{Binding CurrentEditingItem.Model.IsDirty,Converter={StaticResource BooleanToVisibilityConverter},NotifyOnSourceUpdated=True}">
+                <Button Style="{StaticResource ButtonStyle_FlatSquare}"  BorderThickness="0" Padding="12,4" Margin="8,0" Command="{Binding CanelEditCommand}" IsCancel="True">取消</Button>
+                <Button Style="{StaticResource ButtonStyle_AccentedSquare}"   BorderThickness="0" Padding="12,4" Margin="8,0" Command="{Binding SubmitEditCommand}" IsDefault="True">保存</Button>
+
+            </StackPanel>
+        </Grid>
+    </Border>
+</UserControl>

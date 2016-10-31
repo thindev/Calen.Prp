@@ -3,6 +3,7 @@ using Calen.Prp.Dal.Tables;
 using Csla;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Calen.Prp.Core.TimeManage
@@ -16,8 +17,8 @@ namespace Calen.Prp.Core.TimeManage
         }
         protected override void DataPortal_Fetch(object criteria)
         {
-            IEnumerable<Activity> goals = DataAccessor.Instance.DataBase.Table<Activity>().Where(item => true);
-            foreach (var item in goals)
+            List<Activity> activities = DataAccessor.Instance.DataBase.Table<Activity>().ToList();
+            foreach (var item in activities)
             {
                 ActivityEdit ae = ActivityEdit.FromDbItem(item);
                 this.Add(ae);

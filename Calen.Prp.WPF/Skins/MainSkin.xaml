@@ -18,6 +18,7 @@
         <ResourceDictionary Source="pack://application:,,,/Calen.Prp.WPF;component/Skins/ControlStyles.xaml" />
         <!--DataTemplates-->
         <ResourceDictionary Source="pack://application:,,,/Calen.Prp.WPF;component/Skins/DataTemplates.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/Calen.Prp.WPF;component/Skins/DialogContentTemplate.xaml"/>
     </ResourceDictionary.MergedDictionaries>
     <sys:Double x:Key="FontSize_Large">15.0</sys:Double>
     <sys:Double x:Key="FontSize_Normal">14.0</sys:Double>

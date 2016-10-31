@@ -1,0 +1,10 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:vm="clr-namespace:Calen.Prp.WPF.ViewModel"
+                    xmlns:vm_tm="clr-namespace:Calen.Prp.WPF.ViewModel.TimeManage"
+                    xmlns:view="clr-namespace:Calen.Prp.WPF.View"
+                    >
+    <DataTemplate DataType="{x:Type vm_tm:ActivityManageViewModel}">
+        <view:ActivityEditPanel/>
+    </DataTemplate>
+</ResourceDictionary>

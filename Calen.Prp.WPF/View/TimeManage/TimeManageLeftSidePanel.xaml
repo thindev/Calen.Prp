@@ -47,7 +47,11 @@
                             <RowDefinition Height="30"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
+                        <Grid>
                         <TextBlock Text="活动" Foreground="{DynamicResource Foreground_TitleKey}" FontSize="{DynamicResource FontSize_Normal}" VerticalAlignment="Center" Margin="10,0"/>
+                            <Button Style="{DynamicResource ButtonStyle_GeometryContent}"
+                                    Content="{DynamicResource Geometry_AddButtonIcon}" HorizontalAlignment="Right" Padding="4" Margin="2" Command="{Binding ActivityManager.AddActivityCommand}" ToolTip="添加活动" local:DialogHelper.Register="{Binding ActivityManager}"/>
+                        </Grid>
                         <ListBox Grid.Row="1" BorderThickness="0" ItemsSource="{Binding ActivityManager.ActivityList}" Background="Transparent" SelectedItem="{Binding CurrentActivity}">
                             <ListBox.ItemContainerStyle>
                                 <Style TargetType="ListBoxItem">
