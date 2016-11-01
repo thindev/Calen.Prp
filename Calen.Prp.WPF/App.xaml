@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 			 xmlns:ignore="http://www.galasoft.ch/ignore"
+             xmlns:converters="clr-namespace:Calen.Prp.WPF.View.Converters"
              StartupUri="MainWindow.xaml"
              mc:Ignorable="d ignore">
 
@@ -17,6 +18,10 @@
             <!--Global View Model Locator-->
             <vm:ViewModelLocator x:Key="Locator"
                              d:IsDataSource="True" />
+            <!--Converters-->
+            <converters:InverseBooleanConverter x:Key="InverseBooleanConverter"/>
+            <converters:InverseBoolToVisibilityConverter x:Key="InverseBoolToVisibilityConverter"/>
+
         </ResourceDictionary>
     </Application.Resources>
     

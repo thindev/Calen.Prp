@@ -16,8 +16,8 @@
             </Grid.RowDefinitions>
             <Border Background="{DynamicResource PrimaryLightColorKey}" CornerRadius="4,4,0,0" TextElement.FontSize="{DynamicResource FontSize_Normal}">
                 <Grid  >
-                    <TextBlock Text="活动信息" Margin="12,0" VerticalAlignment="Center" FontSize="{DynamicResource FontSize_Normal}" Foreground="{DynamicResource Foreground_TitleKey}" Background="{DynamicResource PrimaryLightColorKey}"/>
-                    <TextBlock Text="新增活动" Margin="12,0" VerticalAlignment="Center" FontSize="{DynamicResource FontSize_Normal}" Foreground="{DynamicResource Foreground_TitleKey}" Visibility="{Binding CurrentEditingItem.Model.IsNew,Converter={StaticResource BooleanToVisibilityConverter} }" Background="{DynamicResource PrimaryLightColorKey}"/>
+                    <TextBlock Text="清单信息" Margin="12,0" VerticalAlignment="Center" FontSize="{DynamicResource FontSize_Normal}" Foreground="{DynamicResource Foreground_TitleKey}" Visibility="{Binding CurrentEditingItem.Model.IsNew,Converter={StaticResource InverseBoolToVisibilityConverter} }" />
+                    <TextBlock Text="新增清单" Margin="12,0" VerticalAlignment="Center" FontSize="{DynamicResource FontSize_Normal}" Foreground="{DynamicResource Foreground_TitleKey}" Visibility="{Binding CurrentEditingItem.Model.IsNew,Converter={StaticResource BooleanToVisibilityConverter} }" />
 
                 </Grid>
             </Border>
@@ -31,8 +31,8 @@
                 <StackPanel Orientation="Vertical" TextElement.FontSize="{DynamicResource FontSize_Normal}" TextElement.Foreground="{DynamicResource Foreground_TitleKey}" DataContext="{Binding CurrentEditingItem}">
 
                     <DockPanel Margin="0,0,0,8">
-                        <TextBox x:Name="txt_goalInput" Text="{Binding BufferGoalItem.Model.Content, UpdateSourceTrigger=PropertyChanged}" Style="{DynamicResource TextBoxStyle_Common}"  Background="{DynamicResource BlankColorKey}"   BorderBrush="{DynamicResource PrimaryMedianColorKey}" VerticalContentAlignment="Center"  Foreground="{DynamicResource Foreground_NormalKey}" mahapps:TextBoxHelper.Watermark="活动名称"  BorderThickness="1" FontSize="{DynamicResource FontSize_Normal}"
-								mahapps:TextBoxHelper.ClearTextButton="True" />
+                        <TextBox  Text="{Binding Model.Name, UpdateSourceTrigger=PropertyChanged}" Style="{DynamicResource TextBoxStyle_Common}"  Background="{DynamicResource BlankColorKey}"   BorderBrush="{DynamicResource PrimaryMedianColorKey}" VerticalContentAlignment="Center"  Foreground="{DynamicResource Foreground_NormalKey}" mahapps:TextBoxHelper.Watermark="清单名称"  BorderThickness="1" FontSize="{DynamicResource FontSize_Normal}"
+								mahapps:TextBoxHelper.ClearTextButton="True" Padding="0,4"/>
                     </DockPanel>
                     
                     
@@ -43,11 +43,12 @@
                 </StackPanel>
 
             </Grid>
-            <StackPanel Margin="12,0,12,12" Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Visibility="{Binding CurrentEditingItem.Model.IsDirty,Converter={StaticResource BooleanToVisibilityConverter},NotifyOnSourceUpdated=True}">
-                <Button Style="{StaticResource ButtonStyle_FlatSquare}"  BorderThickness="0" Padding="12,4" Margin="8,0" Command="{Binding CanelEditCommand}" IsCancel="True">取消</Button>
-                <Button Style="{StaticResource ButtonStyle_AccentedSquare}"   BorderThickness="0" Padding="12,4" Margin="8,0" Command="{Binding SubmitEditCommand}" IsDefault="True">保存</Button>
+            <StackPanel Margin="12,0,12,12" Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" >
+                <Button Style="{StaticResource ButtonStyle_FlatSquare}"  BorderThickness="0" Padding="12,4" Margin="8,0" Command="{Binding CancelCurrentEditCommand}" IsCancel="True">取消</Button>
+                <Button Style="{StaticResource ButtonStyle_AccentedSquare}"   BorderThickness="0" Padding="12,4" Margin="8,0" Command="{Binding SubmitCurrentEditCommand}" IsDefault="True" IsEnabled="{Binding CurrentEditingItem.Model.IsDirty}">保存</Button>
 
             </StackPanel>
+            <local:BusyIndicator Grid.RowSpan="4" IsBusy="{Binding IsBusy}"/>
         </Grid>
     </Border>
 </UserControl>

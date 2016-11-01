@@ -111,7 +111,7 @@ namespace Calen.Prp.Core.TimeManage
         protected override void DataPortal_Insert()
         {
             Goal item = this.ToDbItem();
-            item.CreateTime = DateTime.Now;
+            item.CreateTime =item.LastUpdateTime= DateTime.Now;
             DataAccessor.Instance.DataBase.Insert(item);
         }
         protected override void DataPortal_Update()
@@ -129,7 +129,12 @@ namespace Calen.Prp.Core.TimeManage
 
         protected Goal ToDbItem()
         {
-            Goal item = new Goal();
+
+            Goal item=null;
+            if (IsNew)
+                item = new Goal();
+            else
+                DataAccessor.Instance.DataBase.Find<Goal>(this.Id);
             item.Content = this.Content;
             item.Description = this.Description;
             item.EndTime = this.EndTime;

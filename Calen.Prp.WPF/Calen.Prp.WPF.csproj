@@ -107,9 +107,14 @@
     <Compile Include="ViewModel\TimeManage\TimeManageViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="View\BusyIndicator.xaml.cs">
+      <DependentUpon>BusyIndicator.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ContentDialogContainer.xaml.cs">
       <DependentUpon>ContentDialogContainer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Converters\InverseBooleanConverter.cs" />
+    <Compile Include="View\Converters\InverseBoolToVisibilityConverter.cs" />
     <Compile Include="View\DialogHelper.cs" />
     <Compile Include="View\HdtPopup.cs" />
     <Compile Include="View\SlidePanel.cs" />
@@ -203,6 +208,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Skins\Blue.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\BusyIndicator.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

@@ -471,7 +471,7 @@
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center"  Margin="4,0">
                         <!--<Path Fill="{Binding ElementName=content,Path=Foreground}" Stretch="Uniform" Height="15" Width="15" VerticalAlignment="Center" Data="{Binding IconGeometry}"/>-->
-                        <TextBlock x:Name="content" FontSize="{DynamicResource FontSize_Large}"  Text="{Binding Title}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <TextBlock x:Name="content" FontSize="{DynamicResource FontSize_Large}" Text="{Binding Title}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     </StackPanel>
                 </DataTemplate>
             </Setter.Value>
@@ -480,8 +480,8 @@
             <Setter.Value>
                 <DataTemplate>
                     <Border BorderThickness="0,1,0,0" BorderBrush="{DynamicResource PrimaryColorKey}"  >
-                        <mahApps:MetroContentControl Margin="0,4,0,0">
-                            <ContentControl Content="{Binding Content}" >
+                        <mahApps:MetroContentControl >
+                            <ContentControl Content="{Binding Content}">
                                 <ContentControl.ContentTemplateSelector>
                                     <view:PageContentTemplateSelector/>
                                 </ContentControl.ContentTemplateSelector>

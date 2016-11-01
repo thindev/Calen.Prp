@@ -14,7 +14,7 @@
         <StackPanel Grid.ColumnSpan="2">
             <ToggleButton Name="navTglb" IsChecked="True" Checked="ToggleButton_Checked" Unchecked="ToggleButton_Unchecked" Style="{DynamicResource ToggleButtonStyle_GeometryContent}" Height="42" Padding="12,15" HorizontalAlignment="Stretch" Content="{DynamicResource Geometry_NavigationMenuListIcon}"/>
             <StackPanel >
-                <RadioButton IsChecked="{Binding IsGoalMenuSelected}" GroupName="time_manage" Style="{DynamicResource NavigationMenuItemStyle}" ToolTip="{Binding ElementName=tbl2,Path=Text}">
+                <StackPanel > <RadioButton IsChecked="{Binding IsGoalMenuSelected}" GroupName="time_manage" Style="{DynamicResource NavigationMenuItemStyle}" ToolTip="{Binding ElementName=tbl2,Path=Text}">
                     <StackPanel Orientation="Horizontal" >
                         <Path Margin="14" Fill="{Binding RelativeSource={RelativeSource AncestorType=RadioButton},Path=Foreground}" Stretch="Uniform" Height="16" Width="16" Data="{DynamicResource Geometry_TargetIcon}"/>
                         <TextBlock Name="tbl2" Text="目标清单" VerticalAlignment="Center" Margin="2,0" FontSize="{DynamicResource FontSize_Normal}"/>
@@ -40,29 +40,37 @@
                         <TextBlock Name="tbl5" Text="时间日志" VerticalAlignment="Center" Margin="2,0" FontSize="{DynamicResource FontSize_Normal}"/>
                     </StackPanel>
                 </RadioButton>
-                <Grid Margin="0,20,0,0">
-                    <ToggleButton Name="tagsToggleButton" IsChecked="{Binding ElementName=navTglb,Path=IsChecked,Mode=TwoWay}" Style="{DynamicResource ToggleButtonStyle_GeometryContent}" Content="{DynamicResource Geometry_ActivityListIcon}" VerticalAlignment="Top" HorizontalAlignment="Stretch" Height="42" Padding="14" Visibility="Collapsed"  ToolTip="活动标签"/>
+                </StackPanel>
+                <Rectangle Height="1" HorizontalAlignment="Stretch" Fill="{DynamicResource PrimaryColorKey}" Margin="12,16"/>
+                <Grid  >
+                    <ToggleButton Name="tagsToggleButton" IsChecked="{Binding ElementName=navTglb,Path=IsChecked,Mode=TwoWay}" Style="{DynamicResource ToggleButtonStyle_GeometryContent}" Content="{DynamicResource Geometry_ActivityListIcon}" VerticalAlignment="Top" HorizontalAlignment="Stretch" Height="42" Padding="14" Visibility="Collapsed"  ToolTip="行动清单"/>
                     <Grid Name="activitiesContainer" >
                         <Grid.RowDefinitions>
                             <RowDefinition Height="30"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
                         <Grid>
-                        <TextBlock Text="活动" Foreground="{DynamicResource Foreground_TitleKey}" FontSize="{DynamicResource FontSize_Normal}" VerticalAlignment="Center" Margin="10,0"/>
+                        <TextBlock Text="行动清单" Foreground="{DynamicResource Foreground_TitleKey}" FontSize="{DynamicResource FontSize_Normal}" VerticalAlignment="Center" Margin="10,0"/>
                             <Button Style="{DynamicResource ButtonStyle_GeometryContent}"
-                                    Content="{DynamicResource Geometry_AddButtonIcon}" HorizontalAlignment="Right" Padding="4" Margin="2" Command="{Binding ActivityManager.AddActivityCommand}" ToolTip="添加活动" local:DialogHelper.Register="{Binding ActivityManager}"/>
+                                    Content="{DynamicResource Geometry_AddButtonIcon}" HorizontalAlignment="Right" Padding="4" Margin="2" Command="{Binding ActivityManager.AddActivityCommand}" ToolTip="添加清单" local:DialogHelper.Register="{Binding ActivityManager}"/>
                         </Grid>
-                        <ListBox Grid.Row="1" BorderThickness="0" ItemsSource="{Binding ActivityManager.ActivityList}" Background="Transparent" SelectedItem="{Binding CurrentActivity}">
+                        <ListBox Grid.Row="1" BorderThickness="0" ItemsSource="{Binding ActivityManager.ActivityList}" Background="Transparent" SelectedItem="{Binding ActivityManager.SelectedItem}" Tag="{Binding ActivityManager}">
                             <ListBox.ItemContainerStyle>
                                 <Style TargetType="ListBoxItem">
                                     <Setter Property="Template">
                                         <Setter.Value>
                                             <ControlTemplate TargetType="ListBoxItem">
-                                                <RadioButton GroupName="time_manage" Style="{DynamicResource NavigationMenuItemStyle}" IsChecked="{Binding RelativeSource={RelativeSource AncestorType=ListBoxItem},Path=IsSelected,Mode=TwoWay}">
+                                                <RadioButton Name="rd" GroupName="time_manage"  Style="{DynamicResource NavigationMenuItemStyle}" IsChecked="{Binding RelativeSource={RelativeSource AncestorType=ListBoxItem},Path=IsSelected,Mode=TwoWay}" Tag="{Binding RelativeSource={RelativeSource AncestorType=ListBox},Path=Tag}">
                                                     <StackPanel Orientation="Horizontal" >
                                                         <Path Margin="14" Fill="{Binding RelativeSource={RelativeSource AncestorType=RadioButton},Path=Foreground}" Stretch="Uniform" Height="16" Width="16" Data="{DynamicResource Geometry_ActivityItemIcon}"/>
                                                         <TextBlock  Text="{Binding Model.Name}" VerticalAlignment="Center" Margin="2,0" FontSize="{DynamicResource FontSize_Normal}"/>
                                                     </StackPanel>
+                                                    <RadioButton.ContextMenu>
+                                                        <ContextMenu PlacementTarget="{Binding ElementName=rd}">
+                                                            <MenuItem Header="编辑" Command="{Binding RelativeSource={RelativeSource AncestorType=ContextMenu},Path=PlacementTarget.Tag.BeginEditSelectedItemCommand}" CommandParameter="{Binding}"/>
+                                                            <MenuItem Header="删除" Command="{Binding RelativeSource={RelativeSource AncestorType=ContextMenu},Path=PlacementTarget.Tag.DeleteSelectedItemCommand}" CommandParameter="{Binding}"/>
+                                                        </ContextMenu>
+                                                    </RadioButton.ContextMenu>
                                                 </RadioButton>
                                             </ControlTemplate>
                                         </Setter.Value>

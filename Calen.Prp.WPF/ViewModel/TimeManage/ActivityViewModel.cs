@@ -15,5 +15,22 @@ namespace Calen.Prp.WPF.ViewModel.TimeManage
         {
 
         }
+        public void BeginEdit()
+        {
+            this.Model.BeginEdit();
+        }
+        public void CancelEdit()
+        {
+            this.Model.CancelEdit();
+        }
+        public void ApplyEdit()
+        {
+            this.Model.ApplyEdit();
+            this.Model.MarkNotBusy();
+        }
+        public async Task SaveAsync()
+        {
+            this.Model=await this.Model.SaveAsync();
+        }
     }
 }
