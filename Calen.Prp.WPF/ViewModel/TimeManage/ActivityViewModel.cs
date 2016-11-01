@@ -26,7 +26,7 @@ namespace Calen.Prp.WPF.ViewModel.TimeManage
         public void ApplyEdit()
         {
             this.Model.ApplyEdit();
-            this.Model.MarkNotBusy();
+            this.Model.MarkIdle1();
         }
         public async Task SaveAsync()
         {

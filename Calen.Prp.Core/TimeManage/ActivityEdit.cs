@@ -54,7 +54,7 @@ namespace Calen.Prp.Core.TimeManage
             item.LastUpdateTime = DateTime.Now;
             DataAccessor.Instance.DataBase.Update(item);
         }
-        public void MarkNotBusy()
+        public void MarkIdle1()
         {
             this.MarkIdle();
         }
