@@ -1,6 +1,7 @@
 ﻿using Calen.Prp.Dal;
 using Calen.Prp.Dal.Tables;
 using Csla;
+using SQLite.Net;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,13 +16,25 @@ namespace Calen.Prp.Core.TimeManage
         {
             return DataPortal.Fetch<ActivityDynamicList>();
         }
+        public static string[] GetActivityGroupNames()
+        {
+            using (SQLiteConnection con = DataAccessor.Instance.GetDbConnection())
+            {
+                string[] names = con.Table<Activity>().Select(i => i.GroupName).Distinct().ToArray();
+                return names;
+            }
+        }
+
         protected override void DataPortal_Fetch(object criteria)
         {
-            List<Activity> activities = DataAccessor.Instance.DataBase.Table<Activity>().ToList();
-            foreach (var item in activities)
+            using (SQLiteConnection con = DataAccessor.Instance.GetDbConnection())
             {
-                ActivityEdit ae = ActivityEdit.FromDbItem(item);
-                this.Add(ae);
+                List<Activity> activities = con.Table<Activity>().ToList();
+                foreach (var item in activities)
+                {
+                    ActivityEdit ae = ActivityEdit.FromDbItem(item);
+                    this.Add(ae);
+                }
             }
         }
     }

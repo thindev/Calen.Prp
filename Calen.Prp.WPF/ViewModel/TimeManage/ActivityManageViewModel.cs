@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Data;
 using System.Windows.Input;
 
 namespace Calen.Prp.WPF.ViewModel.TimeManage
@@ -13,15 +14,29 @@ namespace Calen.Prp.WPF.ViewModel.TimeManage
     public class ActivityManageViewModel : ViewModelBase<ActivityDynamicList>
     {
         ObservableCollection<ActivityViewModel> _activityList = new ObservableCollection<ActivityViewModel>();
+        ObservableCollection<string> _activityGroupNameList = new ObservableCollection<string>();
         ActivityViewModel _currentEditingItem;
         ActivityViewModel _selectedItem;
+        public ObservableCollection<string> ActivityGroupNameList
+        {
+            get { return _activityGroupNameList; }
+        }
         public ObservableCollection<ActivityViewModel> ActivityList
         {
             get { return _activityList; }
         }
         public ActivityManageViewModel(ActivityDynamicList model) : base(model)
         {
+            this.Init();
             this.RefreshListAsync();
+            this.RefreshGroupNames();
+        }
+
+        ListCollectionView _activityListView;
+        void Init()
+        {
+            _activityListView = (ListCollectionView)CollectionViewSource.GetDefaultView(this.ActivityList);
+            _activityListView.GroupDescriptions.Add(new PropertyGroupDescription("Model.GroupName"));
         }
 
         protected async void RefreshListAsync()
@@ -38,6 +53,22 @@ namespace Calen.Prp.WPF.ViewModel.TimeManage
                 _activityList.Add(vm);
             }
         }
+
+        protected async void RefreshGroupNames()
+        {
+            string[] names = null;
+            await Task.Run(() =>
+            {
+                names = ActivityDynamicList.GetActivityGroupNames();
+            }
+            );
+            foreach (string n in names)
+            {
+                if(!string.IsNullOrEmpty(n))
+                this.ActivityGroupNameList.Add(n);
+            }
+        } 
+
         ICommand _addActivityCommand;
         ICommand _cancelCurrentEditCommand;
         ICommand _submitCurrentEditCommand;
@@ -109,7 +140,19 @@ namespace Calen.Prp.WPF.ViewModel.TimeManage
             this.IsBusy = false;
             AppContext.DialogHelper.RemoveContentDialog(this);
             if(isNew)
-            this.ActivityList.Add(this.CurrentEditingItem);
+            {
+                this.ActivityList.Add(this.CurrentEditingItem);
+            }
+            else
+            {
+                _activityListView.EditItem(this.CurrentEditingItem);
+                _activityListView.CommitEdit();
+            }
+           
+            if(!this.ActivityGroupNameList.Contains(this.CurrentEditingItem.Model.GroupName)&&!string.IsNullOrEmpty(this.CurrentEditingItem.Model.GroupName))
+            {
+                this.ActivityGroupNameList.Add(this.CurrentEditingItem.Model.GroupName);
+            }
             this.CurrentEditingItem = null;
         }
 

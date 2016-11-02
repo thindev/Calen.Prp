@@ -20,11 +20,14 @@ namespace Calen.Prp.Core.TimeManage
         }
         protected override void DataPortal_Fetch(object criteria)
         {
-            List<Goal> goals = DataAccessor.Instance.DataBase.Table<Goal>().Where(item => true).ToList();
-            foreach(var item in goals)
+            using (SQLiteConnection con = DataAccessor.Instance.GetDbConnection())
             {
-                GoalEdit ge = GoalEdit.FromDbItem(item);
-                this.Add(ge);
+                List<Goal> goals = con.Table<Goal>().Where(item => true).ToList();
+                foreach (var item in goals)
+                {
+                    GoalEdit ge = GoalEdit.FromDbItem(item);
+                    this.Add(ge);
+                }
             }
         }
     }

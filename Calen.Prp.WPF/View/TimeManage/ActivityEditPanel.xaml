@@ -18,7 +18,7 @@
                 <Grid  >
                     <TextBlock Text="清单信息" Margin="12,0" VerticalAlignment="Center" FontSize="{DynamicResource FontSize_Normal}" Foreground="{DynamicResource Foreground_TitleKey}" Visibility="{Binding CurrentEditingItem.Model.IsNew,Converter={StaticResource InverseBoolToVisibilityConverter} }" />
                     <TextBlock Text="新增清单" Margin="12,0" VerticalAlignment="Center" FontSize="{DynamicResource FontSize_Normal}" Foreground="{DynamicResource Foreground_TitleKey}" Visibility="{Binding CurrentEditingItem.Model.IsNew,Converter={StaticResource BooleanToVisibilityConverter} }" />
-
+                    <Button VerticalAlignment="Center" HorizontalAlignment="Right" Margin="4,0" Style="{DynamicResource CloseButtonStyle}" Foreground="{DynamicResource Foreground_NormalKey}" Height="24" Width="24"/>
                 </Grid>
             </Border>
             
@@ -28,14 +28,19 @@
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
 
-                <StackPanel Orientation="Vertical" TextElement.FontSize="{DynamicResource FontSize_Normal}" TextElement.Foreground="{DynamicResource Foreground_TitleKey}" DataContext="{Binding CurrentEditingItem}">
+                <StackPanel Orientation="Vertical" TextElement.FontSize="{DynamicResource FontSize_Normal}" TextElement.Foreground="{DynamicResource Foreground_TitleKey}" >
 
                     <DockPanel Margin="0,0,0,8">
-                        <TextBox  Text="{Binding Model.Name, UpdateSourceTrigger=PropertyChanged}" Style="{DynamicResource TextBoxStyle_Common}"  Background="{DynamicResource BlankColorKey}"   BorderBrush="{DynamicResource PrimaryMedianColorKey}" VerticalContentAlignment="Center"  Foreground="{DynamicResource Foreground_NormalKey}" mahapps:TextBoxHelper.Watermark="清单名称"  BorderThickness="1" FontSize="{DynamicResource FontSize_Normal}"
+                        <TextBlock Text="清单名称：" VerticalAlignment="Center"/>
+                        <TextBox  Text="{Binding CurrentEditingItem.Model.Name, UpdateSourceTrigger=PropertyChanged}" Style="{DynamicResource TextBoxStyle_Common}"  Background="{DynamicResource BlankColorKey}"   BorderBrush="{DynamicResource PrimaryMedianColorKey}" VerticalContentAlignment="Center"  Foreground="{DynamicResource Foreground_NormalKey}" mahapps:TextBoxHelper.Watermark="清单名称"  BorderThickness="1" FontSize="{DynamicResource FontSize_Normal}"
 								mahapps:TextBoxHelper.ClearTextButton="True" Padding="0,4"/>
                     </DockPanel>
-                    
-                    
+                    <DockPanel Margin="0,0,0,8">
+                        <TextBlock Text="分组名称：" VerticalAlignment="Center"/>
+                        <ComboBox  Text="{Binding CurrentEditingItem.Model.GroupName}"   Background="{DynamicResource BlankColorKey}"   BorderBrush="{DynamicResource PrimaryMedianColorKey}" VerticalContentAlignment="Center"  Foreground="{DynamicResource Foreground_NormalKey}" mahapps:TextBoxHelper.Watermark="无分组"  BorderThickness="1" FontSize="{DynamicResource FontSize_Normal}" IsEditable="True" mahapps:TextBoxHelper.ButtonFontSize="12"
+						  mahapps:TextBoxHelper.ClearTextButton="True" Padding="0,4" ItemsSource="{Binding ActivityGroupNameList}"/>
+                    </DockPanel>
+
                     <StackPanel Margin="0,8,0,0" >
                         <TextBlock Text="备注：" VerticalAlignment="Center"/>
                         <TextBox Style="{DynamicResource TextBoxStyle_Common}" Margin="0,8,0,0" TextWrapping="Wrap" AcceptsReturn="True" VerticalAlignment="Center" Height="84" FontSize="{DynamicResource FontSize_Normal}" Foreground="{DynamicResource Foreground_NormalKey}" Text="{Binding Model.Description,UpdateSourceTrigger=PropertyChanged}"/>

@@ -11,10 +11,10 @@
             <ColumnDefinition Width="44"/>
             <ColumnDefinition Name="rightColumn"/>
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.ColumnSpan="2">
-            <ToggleButton Name="navTglb" IsChecked="True" Checked="ToggleButton_Checked" Unchecked="ToggleButton_Unchecked" Style="{DynamicResource ToggleButtonStyle_GeometryContent}" Height="42" Padding="12,15" HorizontalAlignment="Stretch" Content="{DynamicResource Geometry_NavigationMenuListIcon}"/>
-            <StackPanel >
-                <StackPanel > <RadioButton IsChecked="{Binding IsGoalMenuSelected}" GroupName="time_manage" Style="{DynamicResource NavigationMenuItemStyle}" ToolTip="{Binding ElementName=tbl2,Path=Text}">
+        <DockPanel Grid.ColumnSpan="2">
+            <ToggleButton Name="navTglb" DockPanel.Dock="Top" IsChecked="True" Checked="ToggleButton_Checked" Unchecked="ToggleButton_Unchecked" Style="{DynamicResource ToggleButtonStyle_GeometryContent}" Height="42" Padding="12,15" HorizontalAlignment="Stretch" Content="{DynamicResource Geometry_NavigationMenuListIcon}"/>
+            <DockPanel >
+                <StackPanel DockPanel.Dock="Top"> <RadioButton IsChecked="{Binding IsGoalMenuSelected}" GroupName="time_manage" Style="{DynamicResource NavigationMenuItemStyle}" ToolTip="{Binding ElementName=tbl2,Path=Text}">
                     <StackPanel Orientation="Horizontal" >
                         <Path Margin="14" Fill="{Binding RelativeSource={RelativeSource AncestorType=RadioButton},Path=Foreground}" Stretch="Uniform" Height="16" Width="16" Data="{DynamicResource Geometry_TargetIcon}"/>
                         <TextBlock Name="tbl2" Text="目标清单" VerticalAlignment="Center" Margin="2,0" FontSize="{DynamicResource FontSize_Normal}"/>
@@ -41,29 +41,31 @@
                     </StackPanel>
                 </RadioButton>
                 </StackPanel>
-                <Rectangle Height="1" HorizontalAlignment="Stretch" Fill="{DynamicResource PrimaryColorKey}" Margin="12,16"/>
-                <Grid  >
+               
+                <Grid  Margin="0,12,0,0">
+                    <Rectangle Height="1" HorizontalAlignment="Stretch" Fill="{DynamicResource PrimaryColorKey}" VerticalAlignment="Top"/>
                     <ToggleButton Name="tagsToggleButton" IsChecked="{Binding ElementName=navTglb,Path=IsChecked,Mode=TwoWay}" Style="{DynamicResource ToggleButtonStyle_GeometryContent}" Content="{DynamicResource Geometry_ActivityListIcon}" VerticalAlignment="Top" HorizontalAlignment="Stretch" Height="42" Padding="14" Visibility="Collapsed"  ToolTip="行动清单"/>
                     <Grid Name="activitiesContainer" >
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="40"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
                         <Grid>
+                            <Rectangle Height="1" HorizontalAlignment="Stretch" Fill="{DynamicResource PrimaryColorKey}" Margin="12,0" VerticalAlignment="Bottom"/>
                         <TextBlock Text="行动清单" Foreground="{DynamicResource Foreground_TitleKey}" FontSize="{DynamicResource FontSize_Normal}" VerticalAlignment="Center" Margin="10,0"/>
-                            <Button Style="{DynamicResource ButtonStyle_GeometryContent}"
+                            <Button Style="{DynamicResource ButtonStyle_GeometryContent}" Height="28"
                                     Content="{DynamicResource Geometry_AddButtonIcon}" HorizontalAlignment="Right" Padding="4" Margin="2" Command="{Binding ActivityManager.AddActivityCommand}" ToolTip="添加清单" local:DialogHelper.Register="{Binding ActivityManager}"/>
                         </Grid>
-                        <ListBox Grid.Row="1" BorderThickness="0" ItemsSource="{Binding ActivityManager.ActivityList}" Background="Transparent" SelectedItem="{Binding ActivityManager.SelectedItem}" Tag="{Binding ActivityManager}">
+                        <ListBox Grid.Row="1" BorderThickness="0" ItemsSource="{Binding ActivityManager.ActivityList}" Background="Transparent" SelectedItem="{Binding ActivityManager.SelectedItem}" Tag="{Binding ActivityManager}" ScrollViewer.CanContentScroll="False" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
                             <ListBox.ItemContainerStyle>
                                 <Style TargetType="ListBoxItem">
                                     <Setter Property="Template">
                                         <Setter.Value>
                                             <ControlTemplate TargetType="ListBoxItem">
-                                                <RadioButton Name="rd" GroupName="time_manage"  Style="{DynamicResource NavigationMenuItemStyle}" IsChecked="{Binding RelativeSource={RelativeSource AncestorType=ListBoxItem},Path=IsSelected,Mode=TwoWay}" Tag="{Binding RelativeSource={RelativeSource AncestorType=ListBox},Path=Tag}">
-                                                    <StackPanel Orientation="Horizontal" >
-                                                        <Path Margin="14" Fill="{Binding RelativeSource={RelativeSource AncestorType=RadioButton},Path=Foreground}" Stretch="Uniform" Height="16" Width="16" Data="{DynamicResource Geometry_ActivityItemIcon}"/>
-                                                        <TextBlock  Text="{Binding Model.Name}" VerticalAlignment="Center" Margin="2,0" FontSize="{DynamicResource FontSize_Normal}"/>
+                                                <RadioButton Name="rd" GroupName="time_manage"  Style="{DynamicResource RadioButtonStyle_ActivityItem}" IsChecked="{Binding RelativeSource={RelativeSource AncestorType=ListBoxItem},Path=IsSelected,Mode=TwoWay}" Tag="{Binding RelativeSource={RelativeSource AncestorType=ListBox},Path=Tag}">
+                                                    <StackPanel Name="sp" Margin="14,0" Orientation="Horizontal" Height="40">
+                                                        <Path Margin="12,0,8,0" Fill="{Binding RelativeSource={RelativeSource AncestorType=RadioButton},Path=Foreground}" Stretch="Uniform" Height="14" Width="14" Data="{DynamicResource Geometry_ActivityItemIcon}" VerticalAlignment="Center"/>
+                                                        <TextBlock  Text="{Binding Model.Name}" VerticalAlignment="Center"  FontSize="{DynamicResource FontSize_Normal}" />
                                                     </StackPanel>
                                                     <RadioButton.ContextMenu>
                                                         <ContextMenu PlacementTarget="{Binding ElementName=rd}">
@@ -72,19 +74,60 @@
                                                         </ContextMenu>
                                                     </RadioButton.ContextMenu>
                                                 </RadioButton>
+                                                <ControlTemplate.Triggers>
+                                                    <DataTrigger Binding="{Binding Model.GroupName}" Value="">
+                                                        <Setter TargetName="sp" Property="Margin" Value="0"/>
+                                                    </DataTrigger>
+                                                </ControlTemplate.Triggers>
                                             </ControlTemplate>
                                         </Setter.Value>
                                     </Setter>
                                 </Style>
                             </ListBox.ItemContainerStyle>
-                            
+                            <ListBox.GroupStyle>
+                                <GroupStyle>
+                                    <GroupStyle.ContainerStyle>
+                                        <Style TargetType="{x:Type GroupItem}">
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="{x:Type GroupItem}">
+                                                        <Expander IsExpanded="True" Style="{DynamicResource ExpanderStyle_ActivityItemsContainer}">
+                                                            <Expander.Header>
+                                                                <Grid HorizontalAlignment="Stretch" Height="36">
+                                                                    <TextBlock  Text="{Binding Name}"  VerticalAlignment="Center" />
+                                                                    <!--<Border BorderThickness="0" Background="{DynamicResource AccentColorBrush3}" Height="24" Width="24" HorizontalAlignment="Right" Margin="0,0" CornerRadius="12" VerticalAlignment="Center">
+                                                                        <TextBlock Text="{Binding ItemCount}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="{DynamicResource FontSize_Small}" />
+                                                                    </Border>-->
+                                                                </Grid>
+                                                            </Expander.Header>
+                                                            <ItemsPresenter />
+                                                        </Expander>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Name}"  Value="">
+                                                    <Setter Property="Template">
+                                                        <Setter.Value>
+                                                            <ControlTemplate TargetType="{x:Type GroupItem}">
+                                                                <ItemsPresenter />
+                                                            </ControlTemplate>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </GroupStyle.ContainerStyle>
+
+                                </GroupStyle>
+                            </ListBox.GroupStyle>
                         </ListBox>
 
                     </Grid>
                 </Grid>
                
                 
-            </StackPanel>
-        </StackPanel>
+            </DockPanel>
+        </DockPanel>
     </Grid>
 </UserControl>

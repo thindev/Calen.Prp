@@ -14,9 +14,13 @@ namespace Calen.Prp.Dal
     {
         static DataAccessor _instance = new DataAccessor();
         SQLiteConnection dataBase;
-        public SQLiteConnection DataBase
+        string dbPath;
+        public SQLiteConnection GetDbConnection()
         {
-            get { return dataBase; }
+
+                dataBase = new SQLiteConnection(new SQLite.Net.Platform.Generic.SQLitePlatformGeneric(), dbPath);
+                return dataBase;
+      
         }
         private  DataAccessor()
         {
@@ -36,7 +40,7 @@ namespace Calen.Prp.Dal
                 {
                     Directory.CreateDirectory(dataPath);
                 }
-                string dbPath = dataPath + "\\db.db3";
+                dbPath = dataPath + "\\db.db3";
                 dataBase = new SQLiteConnection(new SQLite.Net.Platform.Generic.SQLitePlatformGeneric(), dbPath);
                 this.CreateTables();
         }

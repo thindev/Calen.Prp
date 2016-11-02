@@ -110,20 +110,30 @@ namespace Calen.Prp.Core.TimeManage
 
         protected override void DataPortal_Insert()
         {
-            Goal item = this.ToDbItem();
-            item.CreateTime =item.LastUpdateTime= DateTime.Now;
-            DataAccessor.Instance.DataBase.Insert(item);
+            using (SQLiteConnection con = DataAccessor.Instance.GetDbConnection())
+            {
+                Goal item = this.ToDbItem();
+                item.CreateTime = item.LastUpdateTime = DateTime.Now;
+                con.Insert(item);
+            }
+               
         }
         protected override void DataPortal_Update()
         {
-            Goal item = this.ToDbItem();
-            item.LastUpdateTime = DateTime.Now;
-            DataAccessor.Instance.DataBase.Update(item);
+            using (SQLiteConnection con = DataAccessor.Instance.GetDbConnection())
+            {
+                Goal item = this.ToDbItem();
+                item.LastUpdateTime = DateTime.Now;
+                con.Update(item);
+            }
         }
         protected override void DataPortal_DeleteSelf()
         {
-            Goal item = this.ToDbItem();
-            DataAccessor.Instance.DataBase.Delete(item);
+            using (SQLiteConnection con = DataAccessor.Instance.GetDbConnection())
+            {
+                Goal item = this.ToDbItem();
+                con.Delete(item);
+            }
         }
 
 
@@ -134,7 +144,12 @@ namespace Calen.Prp.Core.TimeManage
             if (IsNew)
                 item = new Goal();
             else
-                DataAccessor.Instance.DataBase.Find<Goal>(this.Id);
+            {
+                using (SQLiteConnection con = DataAccessor.Instance.GetDbConnection())
+                {
+                    con.Find<Goal>(this.Id);
+                }
+            }
             item.Content = this.Content;
             item.Description = this.Description;
             item.EndTime = this.EndTime;

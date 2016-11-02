@@ -1,6 +1,7 @@
 ﻿using Calen.Prp.Dal;
 using Calen.Prp.Dal.Tables;
 using Csla;
+using SQLite.Net;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -13,6 +14,7 @@ namespace Calen.Prp.Core.TimeManage
         public static readonly PropertyInfo<string> IdProperty = RegisterProperty<string>(p => p.Id);
         public static readonly PropertyInfo<string> NameProperty = RegisterProperty<string>(p => p.Name);
         public static readonly PropertyInfo<string> DescriptionProperty = RegisterProperty<string>(p => p.Description);
+        public static readonly PropertyInfo<string> GroupNameProperty = RegisterProperty<string>(p => p.GroupName);
 
         public string Id
         {
@@ -32,27 +34,40 @@ namespace Calen.Prp.Core.TimeManage
             set { SetProperty(DescriptionProperty, value); }
         }
 
+        public string GroupName
+        {
+            get { return GetProperty(GroupNameProperty); }
+            set { SetProperty(GroupNameProperty, value); }
+        }
+
         internal static ActivityEdit FromDbItem(Activity item)
         {
             ActivityEdit ae = DataPortal.Fetch<ActivityEdit>();
             ae.Name = item.Name;
             ae.Id = item.Id;
             ae.Description = item.Description;
+            ae.GroupName = item.GroupName;
             ae.MarkClean();
             return ae;
         }
         protected override void DataPortal_Insert()
         {
-            Activity item = ToDbItem();
-            item.CreateTime = item.LastUpdateTime = DateTime.Now;
-            DataAccessor.Instance.DataBase.Insert(item);
+            using (SQLiteConnection con = DataAccessor.Instance.GetDbConnection())
+            {
+                Activity item = ToDbItem();
+                item.CreateTime = item.LastUpdateTime = DateTime.Now;
+                con.Insert(item);
+            }
         }
        
         protected override void DataPortal_Update()
         {
-            Activity item = ToDbItem();
-            item.LastUpdateTime = DateTime.Now;
-            DataAccessor.Instance.DataBase.Update(item);
+            using (SQLiteConnection con = DataAccessor.Instance.GetDbConnection())
+            {
+                Activity item = ToDbItem();
+                item.LastUpdateTime = DateTime.Now;
+                con.Update(item);
+            }
         }
         public void MarkIdle1()
         {
@@ -61,20 +76,27 @@ namespace Calen.Prp.Core.TimeManage
        
         internal  Activity ToDbItem()
         {
-            Activity a = null;
-            if (IsNew)
-                a = new Activity();
-            else
-            a = DataAccessor.Instance.DataBase.Find<Activity>(this.Id);
-            a.Description = this.Description;
-            a.Id = this.Id;
-            a.Name = this.Name;
-            return a;
+            using (SQLiteConnection con = DataAccessor.Instance.GetDbConnection())
+            {
+                Activity a = null;
+                if (IsNew)
+                    a = new Activity();
+                else
+                    a = con.Find<Activity>(this.Id);
+                a.Description = this.Description;
+                a.Id = this.Id;
+                a.Name = this.Name;
+                a.GroupName = this.GroupName;
+                return a;
+            }
         }
         protected override void DataPortal_DeleteSelf()
         {
-            Activity item = ToDbItem();
-            DataAccessor.Instance.DataBase.Delete(item);
+            using (SQLiteConnection con = DataAccessor.Instance.GetDbConnection())
+            {
+                Activity item = ToDbItem();
+                con.Delete(item);
+            }
         }
         protected void DataPortal_Fetch()
         {
